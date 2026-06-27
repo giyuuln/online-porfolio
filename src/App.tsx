@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -8,28 +7,10 @@ import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
-function useTheme() {
-  const [dark, setDark] = useState(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
-
-  useEffect(() => {
-    const root = document.documentElement
-    root.classList.toggle('dark', dark)
-    localStorage.setItem('theme', dark ? 'dark' : 'light')
-  }, [dark])
-
-  return { dark, toggle: () => setDark((d) => !d) }
-}
-
 export default function App() {
-  const { dark, toggle } = useTheme()
-
   return (
     <>
-      <Nav dark={dark} toggle={toggle} />
+      <Nav />
       <main>
         <Hero />
         <About />

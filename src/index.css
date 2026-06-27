@@ -13,8 +13,10 @@ html {
 }
 
 body {
-  @apply bg-white text-slate-600 dark:bg-[#0a0a0f] dark:text-slate-300 antialiased;
+  @apply antialiased;
   margin: 0;
+  background: #faf8f5;
+  color: #4a4540;
   font-feature-settings: 'cv11', 'ss01';
 }
 
@@ -25,10 +27,11 @@ body {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  background: #d4cfc4;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400 dark:bg-slate-600;
+  background: #b8860b;
 }
 
 @layer components {
