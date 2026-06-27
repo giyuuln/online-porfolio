@@ -21,6 +21,19 @@
       content="Final-year IT student building production-grade web and mobile apps with React, Flask, Kotlin and AI."
     />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Apply theme before paint to avoid a flash of the wrong mode -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme')
+          var dark = saved
+            ? saved === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -9,11 +9,16 @@ export default {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
-        accent: {
-          DEFAULT: '#6366f1',
-          soft: '#818cf8',
-          dark: '#4f46e5',
-        },
+        // Editorial theme tokens — backed by CSS variables so a single
+        // `.dark` class flip swaps the whole palette (see src/index.css).
+        paper: 'var(--paper)',
+        sand: 'var(--sand)',
+        card: 'var(--card)',
+        ink: 'var(--ink)',
+        body: 'var(--body)',
+        muted: 'var(--muted)',
+        line: 'var(--line)',
+        gold: 'var(--gold)',
       },
     },
   },

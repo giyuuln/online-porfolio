@@ -5,7 +5,27 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+  --paper: #faf8f5;
+  --sand: #f5f0e8;
+  --card: #ffffff;
+  --ink: #1a1a1a;
+  --body: #4a4540;
+  --muted: #6b6560;
+  --line: #e8e0d5;
+  --gold: #b8860b;
+}
+
+.dark {
+  color-scheme: dark;
+  --paper: #14110d;
+  --sand: #1b1712;
+  --card: #211c15;
+  --ink: #f5f0e8;
+  --body: #c4bcb0;
+  --muted: #938b80;
+  --line: #2d2820;
+  --gold: #d9a93b;
 }
 
 html {
@@ -15,8 +35,9 @@ html {
 body {
   @apply antialiased;
   margin: 0;
-  background: #faf8f5;
-  color: #4a4540;
+  background: var(--paper);
+  color: var(--body);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-feature-settings: 'cv11', 'ss01';
 }
 
@@ -27,11 +48,11 @@ body {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4cfc4;
+  background: var(--line);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8860b;
+  background: var(--gold);
 }
 
 @layer components {
@@ -39,9 +60,9 @@ body {
     @apply mx-auto max-w-5xl px-6 py-20 sm:px-8 sm:py-28;
   }
   .eyebrow {
-    @apply mb-3 inline-block font-mono text-sm font-medium tracking-wide text-accent;
+    @apply mb-3 inline-block font-mono text-sm font-medium tracking-wide text-gold;
   }
   .heading {
-    @apply text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl;
+    @apply text-3xl font-bold tracking-tight text-ink sm:text-4xl;
   }
 }

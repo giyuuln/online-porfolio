@@ -3,7 +3,7 @@ import { Icon, Reveal } from './ui'
 
 export default function Contact() {
   return (
-    <section id="contact" className="border-t border-[#e8e0d5] bg-[#1a1a1a]">
+    <section id="contact" className="border-t border-line bg-[#1a1a1a]">
       <div className="mx-auto max-w-6xl px-6 py-24 sm:px-8">
         <div className="grid gap-16 md:grid-cols-12">
           <div className="md:col-span-5">
