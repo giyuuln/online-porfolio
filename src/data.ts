@@ -9,11 +9,11 @@ export const profile = {
   phone: '+60 11-2431 4624',
   github: 'https://github.com/giyuuln',
   linkedin: 'https://linkedin.com/in/ammar-hafizin',
-  resumeUrl: 'Ammar_Hafizin_Resume.docx',
+  resumeUrl: 'Ammar_Hafizin_Resume.pdf',
 }
 
 export const about = [
-  "I'm a final-year Bachelor of Information Technology (Hons) student at Universiti Teknikal Malaysia Melaka (UTeM), and a Dean's Award recipient from my Diploma years.",
+  "I'm a final-year Bachelor Of Computer Science (Software Development) with Honours student at Universiti Teknikal Malaysia Melaka (UTeM), and a Dean's Award recipient from my Diploma years.",
   "I work comfortably across the full development cycle — from database design and REST API development to AI/LLM integration and testing. I've shipped full-stack web apps, an Android marketplace, and a system for a real petrol-station client.",
   "I'm looking for a software engineering or IT internship where I can apply these skills to real production work and keep levelling up alongside a strong team.",
 ]
@@ -21,10 +21,10 @@ export const about = [
 export const skills: { group: string; items: string[] }[] = [
   { group: 'Languages', items: ['Python', 'JavaScript', 'Kotlin', 'PHP', 'SQL', 'HTML/CSS'] },
   { group: 'Frameworks', items: ['React', 'Flask', 'Jetpack Compose'] },
-  { group: 'Databases', items: ['Firebase Firestore', 'MySQL', 'Oracle APEX'] },
+  { group: 'Databases', items: ['Firebase Firestore', 'MySQL'] },
   { group: 'AI & APIs', items: ['Google Gemini API', 'REST API design'] },
-  { group: 'Tools', items: ['Git', 'Android Studio', 'VS Code', 'DBeaver', 'Figma'] },
-  { group: 'Practices', items: ['Agile SDLC', 'ERD & Normalization', 'Unit Testing (pytest)'] },
+  { group: 'Tools', items: ['Git', 'Android Studio', 'VS Code', 'Figma'] },
+  { group: 'Practices', items: ['Agile SDLC', 'ERD & Normalization'] },
 ]
 
 export type Project = {
@@ -79,7 +79,7 @@ export const projects: Project[] = [
       'A team-built inspection-automation system for a real petrol-station client. I led Module 3 — Inspection Records & Photo Management.',
     highlights: [
       'Built the Flask/MySQL backend for record handling and photo uploads',
-      'Wrote automated tests with pytest to keep the module reliable',
+      'Wrote manual testing to keep the module reliable',
     ],
     repo: 'https://github.com/giyuuln',
   },
@@ -128,7 +128,7 @@ export const experience: Experience[] = [
 export const education = [
   {
     school: 'Universiti Teknikal Malaysia Melaka (UTeM)',
-    degree: 'Bachelor of Information Technology with Honours — Final Year',
+    degree: 'Bachelor Of Computer Science (Software Development)  with Honours — Final Year',
     period: 'Expected 2027',
     note: 'Coursework: Software Project Management, Database Design, Mobile/Android Development, Web Programming, Technology Entrepreneurship.',
   },
