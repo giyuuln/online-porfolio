@@ -9,7 +9,7 @@ export const profile = {
   phone: '+60 11-2431 4624',
   github: 'https://github.com/giyuuln',
   linkedin: 'https://linkedin.com/in/ammar-hafizin',
-  resumeUrl: 'Ammar_Hafizin_Resume.pdf',
+  resumeUrl: 'Ammar_Hafizin_Resume_v2.pdf',
 }
 
 export const about = [
