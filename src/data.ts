@@ -53,7 +53,7 @@ export const projects: Project[] = [
       'Notification system and a tokenised parental-monitoring dashboard for account oversight',
     ],
     featured: true,
-    repo: 'https://github.com/giyuuln',
+    demo: 'https://omni-trakk.vercel.app',
   },
   {
     title: 'Cat Adoption & Care System',
@@ -68,7 +68,7 @@ export const projects: Project[] = [
       'Validated every module with structured test cases covering valid, invalid and edge-case inputs',
     ],
     featured: true,
-    repo: 'https://github.com/giyuuln',
+    repo: 'https://github.com/giyuuln/project-diploma',
   },
   {
     title: 'AIRS',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       'Built the Flask/MySQL backend for record handling and photo uploads',
       'Wrote manual testing to keep the module reliable',
     ],
-    repo: 'https://github.com/giyuuln',
+    repo: 'https://github.com/ipanwho/AIRS',
   },
   {
     title: 'CampusCycle',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
       'Built with Kotlin and Jetpack Compose for a modern declarative UI',
       'Firebase for authentication and realtime data',
     ],
-    repo: 'https://github.com/giyuuln',
+    repo: 'https://github.com/faheemezani/utem-ftmk-bitp3453-gingerbread-nougat',
   },
 ]
 
