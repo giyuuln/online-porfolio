@@ -29,7 +29,7 @@ function Card({ p, index }: { p: Project; index: number }) {
           {p.period}
         </div>
         
-        <h3 className="text-2xl font-bold text-ink">{p.title}</h3>
+        <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-ink">{p.title}</h3>
         <p className="mt-1 font-mono text-xs uppercase tracking-[0.1em] text-gold">
           {p.subtitle}
         </p>
@@ -64,7 +64,7 @@ function Card({ p, index }: { p: Project; index: number }) {
               href={p.repo}
               target="_blank"
               rel="noreferrer"
-              className="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-ink"
+              className="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-gold"
             >
               <Icon.GitHub className="h-4 w-4" />
               Code
@@ -75,7 +75,7 @@ function Card({ p, index }: { p: Project; index: number }) {
               href={p.demo}
               target="_blank"
               rel="noreferrer"
-              className="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-ink"
+              className="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-gold"
             >
               <Icon.External className="h-4 w-4" />
               Live demo
@@ -101,7 +101,7 @@ export default function Projects() {
           </div>
           <div className="md:col-span-8">
             <Reveal delay={0.1}>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-tight text-ink">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-ink">
                 Things I've built
               </h2>
               <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted">

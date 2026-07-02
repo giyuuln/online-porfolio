@@ -11,7 +11,7 @@
       content="Muhammad Ammar Hafizin — final-year IT student at UTeM and full-stack & Android developer building production-grade apps with React, Flask, Kotlin and AI. Seeking a software engineering internship."
     />
     <meta name="author" content="Muhammad Ammar Hafizin" />
-    <meta name="theme-color" content="#6366f1" />
+    <meta name="theme-color" content="#0a0a0a" />
 
     <!-- Open Graph / social preview -->
     <meta property="og:type" content="website" />
@@ -27,9 +27,8 @@
       (function () {
         try {
           var saved = localStorage.getItem('theme')
-          var dark = saved
-            ? saved === 'dark'
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          // Dark-first design: default to dark unless the user chose light
+          var dark = saved ? saved === 'dark' : true
           if (dark) document.documentElement.classList.add('dark')
         } catch (e) {}
       })()

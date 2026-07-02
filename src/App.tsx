@@ -12,7 +12,8 @@ function useTheme() {
   const [dark, setDark] = useState(() => {
     const saved = localStorage.getItem('theme')
     if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    // Dark-first design: default to dark unless the user chose light
+    return true
   })
 
   useEffect(() => {

@@ -15,7 +15,7 @@ export default function Experience() {
           </div>
           <div className="md:col-span-8">
             <Reveal delay={0.1}>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-tight text-ink">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-ink">
                 Experience & education
               </h2>
             </Reveal>

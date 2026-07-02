@@ -15,7 +15,7 @@ export default function Skills() {
           </div>
           <div className="md:col-span-8">
             <Reveal delay={0.1}>
-              <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-tight text-ink">
+              <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-ink">
                 Tools I build with
               </h2>
             </Reveal>
@@ -36,7 +36,7 @@ export default function Skills() {
                   {s.items.map((item) => (
                     <span
                       key={item}
-                      className="border border-line bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-body"
+                      className="border border-line bg-card px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] text-body transition-colors hover:border-gold hover:text-gold"
                     >
                       {item}
                     </span>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 export function Reveal({
   children,
@@ -20,6 +21,61 @@ export function Reveal({
     >
       {children}
     </motion.div>
+  )
+}
+
+export function BlurText({
+  text,
+  delay = 50,
+  animateBy = 'words',
+  className = '',
+  style,
+}: {
+  text: string
+  delay?: number
+  animateBy?: 'words' | 'letters'
+  className?: string
+  style?: CSSProperties
+}) {
+  const [inView, setInView] = useState(false)
+  const ref = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setInView(true)
+      },
+      { threshold: 0.1 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const segments = useMemo(
+    () => (animateBy === 'words' ? text.split(' ') : text.split('')),
+    [text, animateBy],
+  )
+
+  return (
+    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
+      {segments.map((segment, i) => (
+        <span
+          key={i}
+          style={{
+            display: 'inline-block',
+            filter: inView ? 'blur(0px)' : 'blur(10px)',
+            opacity: inView ? 1 : 0,
+            transform: inView ? 'translateY(0)' : 'translateY(-20px)',
+            transition: `all 0.5s ease-out ${i * delay}ms`,
+          }}
+        >
+          {segment}
+          {animateBy === 'words' && i < segments.length - 1 ? ' ' : ''}
+        </span>
+      ))}
+    </p>
   )
 }
 
