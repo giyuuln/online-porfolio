@@ -31,17 +31,6 @@ export default function Hero() {
             />
           </div>
 
-          {/* Initial badge over the name (no profile photo asset) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
-          >
-            <div className="flex h-[14vw] w-[9vw] items-center justify-center rounded-full border border-line bg-card shadow-2xl transition-transform duration-300 hover:scale-110 lg:h-40 lg:w-24">
-              <span className="font-display text-[4vw] font-bold text-ink lg:text-4xl">A</span>
-            </div>
-          </motion.div>
         </div>
 
         {/* Tagline */}
