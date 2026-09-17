@@ -41,7 +41,7 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: 'OmniTrack',
+    title: 'OmniTrakk',
     subtitle: 'Cross-Media Entertainment Tracker · Final Year Project',
     period: '2025 – 2026',
     stack: ['React 19', 'Flask', 'Firebase Firestore', 'Google Gemini API'],
@@ -53,7 +53,7 @@ export const projects: Project[] = [
       'Notification system and a tokenised parental-monitoring dashboard for account oversight',
     ],
     featured: true,
-    demo: 'https://omni-trakk.vercel.app',
+    demo: 'https://omnitrakk.amkaz.dev',
   },
   {
     title: 'Cat Adoption & Care System',
