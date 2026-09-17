@@ -99,7 +99,7 @@ export default function Nav({
           className="font-display text-2xl font-bold tracking-tight text-ink"
           aria-label="Back to top"
         >
-          A<span className="text-gold">.</span>
+          amkaz<span className="text-gold">.</span>
         </a>
 
         {/* Theme toggle — pill switch */}
