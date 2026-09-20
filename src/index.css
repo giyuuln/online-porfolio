@@ -79,7 +79,29 @@
 
 
 html {
+  /* Native fallback, used when Lenis is not running — which is the case
+     under prefers-reduced-motion, and before/if the JS bundle loads. */
   scroll-behavior: smooth;
+}
+
+/* Lenis adds these classes to <html> itself while it is active. Native
+   smooth scrolling has to be off then, or the browser and Lenis fight over
+   the same scroll position and anchor jumps stutter. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Target `.lenis`, not `.lenis-smooth`: only `lenis` is applied reliably on
+   init (`lenis-smooth` depends on the smoothWheel option and is not present
+   at first paint). Matching the wrong one leaves native smooth scrolling on
+   and the two fight over the scroll position. */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html.lenis-stopped {
+  overflow: hidden;
 }
 
 body {

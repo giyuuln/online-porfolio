@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TechEcosystem from './components/TechEcosystem'
@@ -27,6 +28,7 @@ function useTheme() {
 
 export default function App() {
   const { dark, toggle } = useTheme()
+  useSmoothScroll()
 
   return (
     <>
