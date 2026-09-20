@@ -27,16 +27,99 @@ export const skills: { group: string; items: string[] }[] = [
   { group: 'Practices', items: ['Agile SDLC', 'ERD & Normalization'] },
 ]
 
+/* ───────────────────────────── Tech registry ─────────────────────────────
+   Projects and the stack section are linked by ID, never by string matching:
+   `skills` says 'React' while projects[0].stack says 'React 19', and
+   'Firebase Firestore' vs 'Firebase'. Matching those as text fails silently
+   and renders a chip that highlights nothing. With a union, a typo is a
+   compile error.
+
+   `as const` (not `enum`) — tsconfig sets erasableSyntaxOnly.            */
+
+export const TECH_IDS = [
+  // client
+  'react', 'ts', 'tailwind', 'js', 'html-css', 'kotlin', 'compose',
+  // server
+  'python', 'flask', 'php', 'rest',
+  // data
+  'firebase', 'mysql', 'sql',
+  // ai
+  'gemini',
+  // tools
+  'git', 'gh-actions', 'vite', 'android-studio', 'vscode', 'figma', 'pytest',
+  // practice
+  'erd', 'agile',
+] as const
+
+export type TechId = (typeof TECH_IDS)[number]
+
+export type Layer = 'client' | 'server' | 'data' | 'ai' | 'tools' | 'practice'
+
+export type Tech = {
+  id: TechId
+  label: string
+  layer: Layer
+  /** Currently in daily use — reflects the 2025–2026 final-year project. */
+  daily?: boolean
+  /** Evidenced by this repository rather than by the skills list. */
+  viaRepo?: boolean
+}
+
+export const layers: { id: Layer; label: string; note: string }[] = [
+  { id: 'client', label: 'Client', note: 'What the user touches' },
+  { id: 'server', label: 'Server & APIs', note: 'Request handling and contracts' },
+  { id: 'data', label: 'Data', note: 'Persistence and schema' },
+  { id: 'ai', label: 'AI', note: 'Model integration' },
+  { id: 'tools', label: 'Tooling', note: 'Build, ship and design' },
+  { id: 'practice', label: 'Practice', note: 'How the work gets done' },
+]
+
+export const tech: Tech[] = [
+  { id: 'react', label: 'React', layer: 'client', daily: true },
+  { id: 'ts', label: 'TypeScript', layer: 'client', viaRepo: true },
+  { id: 'tailwind', label: 'Tailwind CSS', layer: 'client', viaRepo: true },
+  { id: 'js', label: 'JavaScript', layer: 'client' },
+  { id: 'html-css', label: 'HTML/CSS', layer: 'client' },
+  { id: 'kotlin', label: 'Kotlin', layer: 'client' },
+  { id: 'compose', label: 'Jetpack Compose', layer: 'client' },
+
+  { id: 'python', label: 'Python', layer: 'server' },
+  { id: 'flask', label: 'Flask', layer: 'server', daily: true },
+  { id: 'php', label: 'PHP', layer: 'server' },
+  { id: 'rest', label: 'REST API design', layer: 'server' },
+
+  { id: 'firebase', label: 'Firebase', layer: 'data', daily: true },
+  { id: 'mysql', label: 'MySQL', layer: 'data' },
+  { id: 'sql', label: 'SQL', layer: 'data' },
+
+  { id: 'gemini', label: 'Google Gemini API', layer: 'ai', daily: true },
+
+  { id: 'git', label: 'Git', layer: 'tools', daily: true },
+  { id: 'gh-actions', label: 'GitHub Actions', layer: 'tools', viaRepo: true },
+  { id: 'vite', label: 'Vite', layer: 'tools', viaRepo: true },
+  { id: 'android-studio', label: 'Android Studio', layer: 'tools' },
+  { id: 'vscode', label: 'VS Code', layer: 'tools', daily: true },
+  { id: 'figma', label: 'Figma', layer: 'tools' },
+  { id: 'pytest', label: 'pytest', layer: 'tools' },
+
+  { id: 'erd', label: 'ERD & Normalization', layer: 'practice' },
+  { id: 'agile', label: 'Agile SDLC', layer: 'practice' },
+]
+
 export type Project = {
   title: string
   subtitle: string
   period: string
   stack: string[]
+  /** Compile-checked link to the tech registry, used for cross-highlighting. */
+  tech: TechId[]
   description: string
   highlights: string[]
   featured?: boolean
   repo?: string
   demo?: string
+  /** Honest provenance label. Only OmniTrakk is actually deployed. */
+  kind: 'live' | 'source' | 'client' | 'coursework'
 }
 
 export const projects: Project[] = [
@@ -45,6 +128,8 @@ export const projects: Project[] = [
     subtitle: 'Cross-Media Entertainment Tracker · Final Year Project',
     period: '2025 – 2026',
     stack: ['React 19', 'Flask', 'Firebase Firestore', 'Google Gemini API'],
+    tech: ['react', 'flask', 'firebase', 'gemini'],
+    kind: 'live',
     description:
       'A full-stack web app that lets users track movies, music and games in one unified dashboard, built on a clean three-tier architecture.',
     highlights: [
@@ -60,6 +145,8 @@ export const projects: Project[] = [
     subtitle: 'Diploma Final Year Project · Solo-built',
     period: '2024 – 2025',
     stack: ['PHP', 'MySQL', 'HTML/CSS', 'Figma'],
+    tech: ['php', 'mysql', 'html-css', 'figma'],
+    kind: 'source',
     description:
       'A role-based web platform (admin, adopter, cat owner) that digitises the cat adoption, return, and reporting process end to end.',
     highlights: [
@@ -75,6 +162,8 @@ export const projects: Project[] = [
     subtitle: 'Automated Inspection & Reporting System · Client Project (iPetro)',
     period: '2025',
     stack: ['Flask', 'MySQL', 'pytest'],
+    tech: ['flask', 'mysql', 'pytest'],
+    kind: 'client',
     description:
       'A team-built inspection-automation system for a real petrol-station client. I led Module 3 — Inspection Records & Photo Management.',
     highlights: [
@@ -88,6 +177,8 @@ export const projects: Project[] = [
     subtitle: 'Android Campus Marketplace',
     period: '2024',
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase'],
+    tech: ['kotlin', 'compose', 'firebase'],
+    kind: 'coursework',
     description:
       'A native Android campus marketplace app, one of several Android projects built to explore modern mobile development.',
     highlights: [

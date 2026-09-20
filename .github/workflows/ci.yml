@@ -19,5 +19,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
+      # Catches in-page links pointing at renamed/removed section ids.
+      # TypeScript cannot see these — they are plain strings.
+      - run: npm run check:anchors
       # Same command as the deploy workflow's build step (tsc -b && vite build)
       - run: npm run build

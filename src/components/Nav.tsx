@@ -3,8 +3,7 @@ import { Icon } from './ui'
 
 const links = [
   { href: '#top', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#stack', label: 'Stack' },
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },

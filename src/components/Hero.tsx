@@ -91,7 +91,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <a
-        href="#about"
+        href="#stack"
         aria-label="Scroll down"
         className="absolute bottom-5 left-1/2 -translate-x-1/2 text-muted transition-colors hover:text-ink"
       >
