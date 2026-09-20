@@ -3,6 +3,8 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TechEcosystem from './components/TechEcosystem'
 import FeaturedWork from './components/FeaturedWork'
+import EngineeringLab from './components/EngineeringLab'
+import Principles from './components/Principles'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -33,6 +35,8 @@ export default function App() {
         <Hero />
         <TechEcosystem />
         <FeaturedWork />
+        <EngineeringLab />
+        <Principles />
         <Experience />
         <Contact />
       </main>

@@ -247,3 +247,138 @@ export const education = [
     note: "Dean's Award recipient (Semesters 1–2).",
   },
 ]
+
+/* ─────────────────────────── Engineering principles ───────────────────────
+   Every principle must cite a real sentence from a project's highlights.
+   `evidence` is that quote verbatim and `source` names the project it came
+   from, so nothing here can drift into an unsupported claim.            */
+
+export type Principle = {
+  id: string
+  title: string
+  summary: string
+  detail: string[]
+  /** Verbatim quote from the cited project's highlights. */
+  evidence: string
+  source: string
+}
+
+export const principles: Principle[] = [
+  {
+    id: 'schema-first',
+    title: 'Design the data before the screens',
+    summary: 'An entity model and a data dictionary come before any UI work.',
+    detail: [
+      'Every system I have shipped started as an ERD with a written data dictionary, normalised before a single page was built.',
+      'That work is documented rather than implicit — context and data-flow diagrams, then module specifications.',
+    ],
+    evidence:
+      'Complete system documentation — context & data-flow diagrams, ERD with data dictionary, module specs',
+    source: 'Cat Adoption & Care System',
+  },
+  {
+    id: 'test-the-edges',
+    title: 'Test the edges, not just the happy path',
+    summary: 'Each module gets valid, invalid and edge-case inputs, written down.',
+    detail: [
+      'Test cases are structured per module and cover the inputs that are supposed to fail, not only the ones that should succeed.',
+      'On the client project this extended to backend testing around record handling and photo uploads.',
+    ],
+    evidence:
+      'Validated every module with structured test cases covering valid, invalid and edge-case inputs',
+    source: 'Cat Adoption & Care System',
+  },
+  {
+    id: 'cap-ai-cost',
+    title: 'Put a ceiling on AI cost',
+    summary: 'Model access is budgeted at design time, not discovered on a bill.',
+    detail: [
+      'The assistant runs on two selectable model slots so the cheaper model handles ordinary traffic.',
+      'A daily usage cap bounds worst-case spend, which matters when the operator is a student rather than a company.',
+    ],
+    evidence:
+      'Integrated Google Gemini for an AI assistant — dual model slots with a daily usage cap for cost control',
+    source: 'OmniTrakk',
+  },
+  {
+    id: 'separate-tiers',
+    title: 'Keep the tiers separate',
+    summary: 'Client, API and storage stay independently replaceable.',
+    detail: [
+      'The frontend talks to a REST API rather than reaching into storage, so either side can change without the other.',
+      'That boundary is what let an AI assistant and a notification system be added without reworking the client.',
+    ],
+    evidence: 'React 19 frontend with a Flask REST API backed by Firebase Firestore',
+    source: 'OmniTrakk',
+  },
+  {
+    id: 'scoped-access',
+    title: 'Scope access with tokens',
+    summary: 'Oversight features get their own narrow, revocable entry point.',
+    detail: [
+      'Parental monitoring is reached through a token rather than by sharing an account password.',
+      'That keeps oversight possible without handing over full account control.',
+    ],
+    evidence:
+      'Notification system and a tokenised parental-monitoring dashboard for account oversight',
+    source: 'OmniTrakk',
+  },
+]
+
+/* ───────────────────────────── Engineering lab ────────────────────────────
+   Bento tiles. Each is verifiable: the coursework list and the award come
+   from `education`, the colophon describes this repository. Deliberately no
+   "N+ projects shipped" style counters — padded counts off a four-item
+   array are exactly the kind of soft metric this site avoids.          */
+
+export type LabTile = {
+  id: string
+  span: 'wide' | 'cell'
+  eyebrow: string
+  title: string
+  body?: string
+  items?: string[]
+  href?: string
+  linkLabel?: string
+}
+
+export const labTiles: LabTile[] = [
+  {
+    id: 'focus',
+    span: 'wide',
+    eyebrow: 'Current focus',
+    title: 'Final year project, in flight',
+    body: 'OmniTrakk is a cross-media tracker built on a three-tier architecture — a React 19 client, a Flask REST API and Firestore — with a cost-capped Gemini assistant layered on top. It is the system most of my current engineering decisions come from.',
+    href: 'https://omnitrakk.amkaz.dev',
+    linkLabel: 'Live demo',
+  },
+  {
+    id: 'coursework',
+    span: 'cell',
+    eyebrow: 'Coursework',
+    title: 'What I am studying',
+    items: [
+      'Software Project Management',
+      'Database Design',
+      'Mobile/Android Development',
+      'Web Programming',
+      'Technology Entrepreneurship',
+    ],
+  },
+  {
+    id: 'recognition',
+    span: 'cell',
+    eyebrow: 'Recognition',
+    title: "Dean's Award",
+    body: "Awarded in Semesters 1–2 of my Diploma in Computer Science at UTeM.",
+  },
+  {
+    id: 'colophon',
+    span: 'wide',
+    eyebrow: 'Colophon',
+    title: 'This site',
+    body: 'React 19 and TypeScript on Vite, styled with Tailwind, deployed by GitHub Actions to GitHub Pages behind a custom domain. The source is public — the fastest way to check the frontend half of the stack above is to read it.',
+    href: 'https://github.com/giyuuln/online-porfolio',
+    linkLabel: 'Source',
+  },
+]
