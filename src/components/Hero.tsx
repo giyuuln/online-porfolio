@@ -1,10 +1,59 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useState } from 'react'
 import { profile } from '../data'
 import { BlurText, Icon } from './ui'
 
 export default function Hero() {
+  const reduced = useReducedMotion()
+  const [vh, setVh] = useState(0)
+
+  useEffect(() => {
+    const measure = () => setVh(window.innerHeight)
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  /*
+   * Progress is derived from the WINDOW scroll, not from `useScroll({ target })`
+   * on the hero itself. The hero is `position: sticky`, so it never moves
+   * relative to the viewport — an element-targeted scroll progress stays
+   * pinned at 0 and the fade silently never runs.
+   */
+  const { scrollY } = useScroll()
+  const progress = useTransform(scrollY, (v) => (vh > 0 ? Math.min(1, v / vh) : 0))
+
+  const opacity = useTransform(progress, [0, 0.75], [1, 0])
+  const scale = useTransform(progress, [0, 1], [1, 0.94])
+  // Once it is hidden behind an opaque panel, take it out of the a11y tree
+  // and the tab order — otherwise the hero's links stay focusable while
+  // invisible, and a keyboard user tabs into nothing.
+  const visibility = useTransform(progress, (p) => (p > 0.95 ? 'hidden' : 'visible'))
+
+  // Under reduced motion the hero is an ordinary static section: no pinning,
+  // no scroll-linked work at all.
+  if (reduced) {
+    return (
+      <section id="top" className="relative flex min-h-screen flex-col overflow-hidden bg-paper">
+        <HeroContent />
+      </section>
+    )
+  }
+
   return (
-    <section id="top" className="relative flex min-h-screen flex-col overflow-hidden bg-paper">
+    <motion.section
+      id="top"
+      style={{ opacity, scale, visibility }}
+      className="sticky top-0 z-0 flex h-screen flex-col overflow-hidden bg-paper"
+    >
+      <HeroContent />
+    </motion.section>
+  )
+}
+
+function HeroContent() {
+  return (
+    <>
       {/* Subtle grain texture overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -99,6 +148,6 @@ export default function Hero() {
           <path d="m6 9 6 6 6-6" />
         </svg>
       </a>
-    </section>
+    </>
   )
 }

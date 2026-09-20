@@ -35,12 +35,16 @@ export default function App() {
       <Nav dark={dark} toggle={toggle} />
       <main>
         <Hero />
-        <TechEcosystem />
-        <FeaturedWork />
-        <EngineeringLab />
-        <Principles />
-        <Timeline />
-        <ContactTerminal />
+        {/* Panel stack. Sits above the pinned hero and slides over it; each
+            section inside carries its own opaque background. */}
+        <div className="relative z-10">
+          <TechEcosystem />
+          <FeaturedWork />
+          <EngineeringLab />
+          <Principles />
+          <Timeline />
+          <ContactTerminal />
+        </div>
       </main>
       <Footer />
     </>

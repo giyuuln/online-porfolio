@@ -31,7 +31,21 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`border-t border-line ${tone === 'sand' ? 'bg-sand' : 'bg-paper'}`}
+      /*
+       * Panel treatment. Each section is `relative` with a rounded top and a
+       * small negative margin, so it overlaps the tail of the one before and
+       * its corners reveal it — the "lifting" look from the reference.
+       *
+       * No z-index needed: positioned siblings paint in DOM order, so each
+       * panel is already above the previous one and above the pinned hero.
+       *
+       * No `overflow-hidden` either — it would break `position: sticky` for
+       * any descendant. Content is inset by `section-pad`, so it never
+       * reaches the rounded corners anyway.
+       */
+      className={`relative -mt-6 rounded-t-[1.75rem] border-t border-line shadow-[0_-20px_50px_-24px_rgb(0_0_0/0.45)] ${
+        tone === 'sand' ? 'bg-sand' : 'bg-paper'
+      }`}
     >
       <div className="section-pad">
         <div className="mb-16 grid gap-8 md:grid-cols-12">
