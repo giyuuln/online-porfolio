@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
 import Nav from './components/Nav'
+import NavPill from './components/NavPill'
 import Hero from './components/Hero'
 import TechEcosystem from './components/TechEcosystem'
 import FeaturedWork from './components/FeaturedWork'
@@ -46,6 +47,7 @@ export default function App() {
           <ContactTerminal />
         </div>
       </main>
+      <NavPill />
       <Footer />
     </>
   )
