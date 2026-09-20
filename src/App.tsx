@@ -5,8 +5,8 @@ import TechEcosystem from './components/TechEcosystem'
 import FeaturedWork from './components/FeaturedWork'
 import EngineeringLab from './components/EngineeringLab'
 import Principles from './components/Principles'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
+import Timeline from './components/Timeline'
+import ContactTerminal from './components/ContactTerminal'
 import Footer from './components/Footer'
 
 function useTheme() {
@@ -37,8 +37,8 @@ export default function App() {
         <FeaturedWork />
         <EngineeringLab />
         <Principles />
-        <Experience />
-        <Contact />
+        <Timeline />
+        <ContactTerminal />
       </main>
       <Footer />
     </>

@@ -382,3 +382,65 @@ export const labTiles: LabTile[] = [
     linkLabel: 'Source',
   },
 ]
+
+/* ──────────────────────────────── Timeline ────────────────────────────────
+   Work and study merged into one chronological rail. `sort` is explicit and
+   numeric because the period strings ('Expected 2027', '2024 – Present',
+   '2022 – 2025') cannot be ordered by parsing them — it is the most recent
+   year each entry is active, descending.                                  */
+
+export type TimelineEntry = {
+  kind: 'work' | 'education'
+  sort: number
+  role: string
+  org: string
+  period: string
+  points: string[]
+  /** Rendered as a small gold tag, e.g. an award. */
+  tag?: string
+}
+
+export const timeline: TimelineEntry[] = [
+  {
+    kind: 'education',
+    sort: 2027,
+    role: 'BSc Computer Science (Software Development), Hons',
+    org: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+    period: 'Expected 2027 · Final year',
+    points: [
+      'Coursework in Software Project Management, Database Design, Mobile/Android Development, Web Programming and Technology Entrepreneurship.',
+    ],
+  },
+  {
+    kind: 'work',
+    sort: 2026,
+    role: 'Shopee Affiliate Content Creator',
+    org: 'Self-employed · Threads @_ammaq.k',
+    period: '2024 – Present',
+    points: [
+      'Built and grew a product-review presence from scratch with a documented content strategy aimed at students and budget buyers.',
+      'Tracked reach and click-through metrics weekly and iterated the content approach based on performance data.',
+    ],
+  },
+  {
+    kind: 'education',
+    sort: 2025,
+    role: 'Diploma in Computer Science',
+    org: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+    period: '2022 – 2025',
+    points: [
+      'Graduated after completing the Cat Adoption & Care System as a solo final year project.',
+    ],
+    tag: "Dean's Award · Sem 1–2",
+  },
+  {
+    kind: 'work',
+    sort: 2022,
+    role: 'Facilitator — SULAM Community Program',
+    org: 'UTeM',
+    period: '2022',
+    points: [
+      'Taught basic algebra to secondary-school students and coordinated with a team to run the program.',
+    ],
+  },
+]
