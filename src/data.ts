@@ -120,6 +120,20 @@ export type Project = {
   demo?: string
   /** Honest provenance label. Only OmniTrakk is actually deployed. */
   kind: 'live' | 'source' | 'client' | 'coursework'
+  /**
+   * How the work was staffed. Only set where the existing copy actually says
+   * so ("Solo-built" in a subtitle, "I led Module 3" in a highlight) — left
+   * undefined rather than guessed.
+   */
+  role?: string
+}
+
+/** Honest status wording per project kind. Coursework is never "production". */
+export const KIND_LABEL: Record<Project['kind'], string> = {
+  live: 'Live deployment',
+  source: 'Source available',
+  client: 'Client project',
+  coursework: 'Coursework',
 }
 
 export const projects: Project[] = [
@@ -130,6 +144,7 @@ export const projects: Project[] = [
     stack: ['React 19', 'Flask', 'Firebase Firestore', 'Google Gemini API'],
     tech: ['react', 'flask', 'firebase', 'gemini'],
     kind: 'live',
+    role: 'Final year project',
     description:
       'A full-stack web app that lets users track movies, music and games in one unified dashboard, built on a clean three-tier architecture.',
     highlights: [
@@ -147,6 +162,7 @@ export const projects: Project[] = [
     stack: ['PHP', 'MySQL', 'HTML/CSS', 'Figma'],
     tech: ['php', 'mysql', 'html-css', 'figma'],
     kind: 'source',
+    role: 'Solo-built',
     description:
       'A role-based web platform (admin, adopter, cat owner) that digitises the cat adoption, return, and reporting process end to end.',
     highlights: [
@@ -164,6 +180,7 @@ export const projects: Project[] = [
     stack: ['Flask', 'MySQL', 'pytest'],
     tech: ['flask', 'mysql', 'pytest'],
     kind: 'client',
+    role: 'Team project — led Module 3',
     description:
       'A team-built inspection-automation system for a real petrol-station client. I led Module 3 — Inspection Records & Photo Management.',
     highlights: [

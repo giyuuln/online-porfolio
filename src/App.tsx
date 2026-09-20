@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import TechEcosystem from './components/TechEcosystem'
-import Projects from './components/Projects'
+import FeaturedWork from './components/FeaturedWork'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -32,7 +32,7 @@ export default function App() {
       <main>
         <Hero />
         <TechEcosystem />
-        <Projects />
+        <FeaturedWork />
         <Experience />
         <Contact />
       </main>

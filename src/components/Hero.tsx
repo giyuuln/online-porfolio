@@ -51,7 +51,7 @@ export default function Hero() {
           className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
           <a
-            href="#projects"
+            href="#work"
             className="group inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-on-gold transition-all hover:opacity-90"
           >
             View my work
