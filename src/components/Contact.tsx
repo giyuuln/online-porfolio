@@ -28,7 +28,7 @@ export default function Contact() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
                   href={`mailto:${profile.email}`}
-                  className="group inline-flex items-center gap-3 rounded-full bg-gold px-8 py-4 font-mono text-xs uppercase tracking-[0.15em] text-paper transition-all hover:opacity-90 dark:text-[#0a0a0a]"
+                  className="group inline-flex items-center gap-3 rounded-full bg-gold px-8 py-4 font-mono text-xs uppercase tracking-[0.15em] text-on-gold transition-all hover:opacity-90"
                 >
                   <Icon.Mail className="h-4 w-4" />
                   {profile.email}

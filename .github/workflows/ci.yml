@@ -1,0 +1,23 @@
+# Validates pull requests with the SAME checks the deploy job runs, so a green
+# PR means a green deploy. Without this nothing gates a merge into main — and
+# main deploys straight to amkaz.dev.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      # Same command as the deploy workflow's build step (tsc -b && vite build)
+      - run: npm run build

@@ -52,7 +52,7 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="group inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-paper transition-all hover:opacity-90 dark:text-[#0a0a0a]"
+            className="group inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-on-gold transition-all hover:opacity-90"
           >
             View my work
             <Icon.Arrow className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
