@@ -36,6 +36,7 @@ export default function ContactTerminal() {
       index="06"
       label="Contact"
       title="Let's talk"
+      accent="talk"
       tone="sand"
       headerAside={
         <Reveal delay={0.2}>

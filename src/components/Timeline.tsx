@@ -16,7 +16,7 @@ export default function Timeline() {
   const entries = [...timeline].sort((a, b) => b.sort - a.sort)
 
   return (
-    <Section id="path" index="05" label="Path" title="How I got here" tone="paper">
+    <Section id="path" index="05" label="Path" title="How I got here" accent="here" tone="paper">
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-8 md:col-start-5">
           {/* The rail itself. */}

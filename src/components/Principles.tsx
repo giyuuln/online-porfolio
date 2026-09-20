@@ -22,6 +22,7 @@ export default function Principles() {
       index="04"
       label="Principles"
       title="How I work"
+      accent="work"
       tone="sand"
       headerAside={
         <Reveal delay={0.2}>

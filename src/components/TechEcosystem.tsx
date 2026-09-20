@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { about, layers, projects, tech, type TechId } from '../data'
 import Section from './Section'
+import TechMarquee from './TechMarquee'
 import { Reveal } from './ui'
 
 /**
@@ -19,7 +20,7 @@ export default function TechEcosystem() {
   const [active, setActive] = useState<TechId | null>(null)
 
   return (
-    <Section id="stack" index="01" label="Stack" title="How I build" tone="paper">
+    <Section id="stack" index="01" label="Stack" title="How I build" accent="build" tone="paper">
       <div className="grid gap-12 md:grid-cols-12 md:gap-16">
         {/* Intro prose */}
         <div className="space-y-6 md:col-span-4">
@@ -94,6 +95,13 @@ export default function TechEcosystem() {
             </div>
           </Reveal>
         </div>
+      </div>
+
+      {/* Marquee — the motion stand-in for the reference site's image strip.
+          Full-bleed: negative margins cancel section-pad's horizontal inset so
+          the chips run edge to edge, which is what sells the movement. */}
+      <div className="-mx-6 mt-16 sm:-mx-8">
+        <TechMarquee />
       </div>
 
       {/* Tech → project linkage */}

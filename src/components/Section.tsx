@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import Accent from './Accent'
 import { Reveal } from './ui'
 
 /**
@@ -13,6 +14,7 @@ export default function Section({
   index,
   label,
   title,
+  accent,
   tone = 'paper',
   headerAside,
   children,
@@ -23,6 +25,8 @@ export default function Section({
   /** Eyebrow text after the number, e.g. "Stack". */
   label: string
   title: string
+  /** Word or phrase within `title` to set in the gold accent colour. */
+  accent?: string
   tone?: 'paper' | 'sand'
   /** Optional content rendered under the heading, inside the header grid. */
   headerAside?: ReactNode
@@ -58,7 +62,9 @@ export default function Section({
           </div>
           <div className="md:col-span-8">
             <Reveal delay={0.1}>
-              <h2 className="heading">{title}</h2>
+              <h2 className="heading">
+                {accent ? <Accent text={title} accent={accent} /> : title}
+              </h2>
             </Reveal>
             {headerAside}
           </div>

@@ -137,6 +137,7 @@ export default function FeaturedWork() {
       index="02"
       label="Work"
       title="Things I've built"
+      accent="built"
       tone="sand"
       headerAside={
         <Reveal delay={0.2}>

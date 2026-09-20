@@ -57,6 +57,7 @@ export default function EngineeringLab() {
       index="03"
       label="Lab"
       title="Working notes"
+      accent="notes"
       tone="paper"
       headerAside={
         <Reveal delay={0.2}>
