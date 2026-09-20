@@ -18,13 +18,83 @@ export const about = [
   "I'm looking for a software engineering or IT internship where I can apply these skills to real production work and keep levelling up alongside a strong team.",
 ]
 
-export const skills: { group: string; items: string[] }[] = [
-  { group: 'Languages', items: ['Python', 'JavaScript', 'Kotlin', 'PHP', 'SQL', 'HTML/CSS'] },
-  { group: 'Frameworks', items: ['React', 'Flask', 'Jetpack Compose'] },
-  { group: 'Databases', items: ['Firebase Firestore', 'MySQL'] },
-  { group: 'AI & APIs', items: ['Google Gemini API', 'REST API design'] },
-  { group: 'Tools', items: ['Git', 'Android Studio', 'VS Code', 'Figma'] },
-  { group: 'Practices', items: ['Agile SDLC', 'ERD & Normalization'] },
+/* ───────────────────────────── Tech registry ─────────────────────────────
+   Projects and the stack section are linked by ID, never by string matching:
+   `skills` says 'React' while projects[0].stack says 'React 19', and
+   'Firebase Firestore' vs 'Firebase'. Matching those as text fails silently
+   and renders a chip that highlights nothing. With a union, a typo is a
+   compile error.
+
+   `as const` (not `enum`) — tsconfig sets erasableSyntaxOnly.            */
+
+export const TECH_IDS = [
+  // client
+  'react', 'ts', 'tailwind', 'js', 'html-css', 'kotlin', 'compose',
+  // server
+  'python', 'flask', 'php', 'rest',
+  // data
+  'firebase', 'mysql', 'sql',
+  // ai
+  'gemini',
+  // tools
+  'git', 'gh-actions', 'vite', 'android-studio', 'vscode', 'figma', 'pytest',
+  // practice
+  'erd', 'agile',
+] as const
+
+export type TechId = (typeof TECH_IDS)[number]
+
+export type Layer = 'client' | 'server' | 'data' | 'ai' | 'tools' | 'practice'
+
+export type Tech = {
+  id: TechId
+  label: string
+  layer: Layer
+  /** Currently in daily use — reflects the 2025–2026 final-year project. */
+  daily?: boolean
+  /** Evidenced by this repository rather than by the skills list. */
+  viaRepo?: boolean
+}
+
+export const layers: { id: Layer; label: string; note: string }[] = [
+  { id: 'client', label: 'Client', note: 'What the user touches' },
+  { id: 'server', label: 'Server & APIs', note: 'Request handling and contracts' },
+  { id: 'data', label: 'Data', note: 'Persistence and schema' },
+  { id: 'ai', label: 'AI', note: 'Model integration' },
+  { id: 'tools', label: 'Tooling', note: 'Build, ship and design' },
+  { id: 'practice', label: 'Practice', note: 'How the work gets done' },
+]
+
+export const tech: Tech[] = [
+  { id: 'react', label: 'React', layer: 'client', daily: true },
+  { id: 'ts', label: 'TypeScript', layer: 'client', viaRepo: true },
+  { id: 'tailwind', label: 'Tailwind CSS', layer: 'client', viaRepo: true },
+  { id: 'js', label: 'JavaScript', layer: 'client' },
+  { id: 'html-css', label: 'HTML/CSS', layer: 'client' },
+  { id: 'kotlin', label: 'Kotlin', layer: 'client' },
+  { id: 'compose', label: 'Jetpack Compose', layer: 'client' },
+
+  { id: 'python', label: 'Python', layer: 'server' },
+  { id: 'flask', label: 'Flask', layer: 'server', daily: true },
+  { id: 'php', label: 'PHP', layer: 'server' },
+  { id: 'rest', label: 'REST API design', layer: 'server' },
+
+  { id: 'firebase', label: 'Firebase', layer: 'data', daily: true },
+  { id: 'mysql', label: 'MySQL', layer: 'data' },
+  { id: 'sql', label: 'SQL', layer: 'data' },
+
+  { id: 'gemini', label: 'Google Gemini API', layer: 'ai', daily: true },
+
+  { id: 'git', label: 'Git', layer: 'tools', daily: true },
+  { id: 'gh-actions', label: 'GitHub Actions', layer: 'tools', viaRepo: true },
+  { id: 'vite', label: 'Vite', layer: 'tools', viaRepo: true },
+  { id: 'android-studio', label: 'Android Studio', layer: 'tools' },
+  { id: 'vscode', label: 'VS Code', layer: 'tools', daily: true },
+  { id: 'figma', label: 'Figma', layer: 'tools' },
+  { id: 'pytest', label: 'pytest', layer: 'tools' },
+
+  { id: 'erd', label: 'ERD & Normalization', layer: 'practice' },
+  { id: 'agile', label: 'Agile SDLC', layer: 'practice' },
 ]
 
 export type Project = {
@@ -32,11 +102,29 @@ export type Project = {
   subtitle: string
   period: string
   stack: string[]
+  /** Compile-checked link to the tech registry, used for cross-highlighting. */
+  tech: TechId[]
   description: string
   highlights: string[]
   featured?: boolean
   repo?: string
   demo?: string
+  /** Honest provenance label. Only OmniTrakk is actually deployed. */
+  kind: 'live' | 'source' | 'client' | 'coursework'
+  /**
+   * How the work was staffed. Only set where the existing copy actually says
+   * so ("Solo-built" in a subtitle, "I led Module 3" in a highlight) — left
+   * undefined rather than guessed.
+   */
+  role?: string
+}
+
+/** Honest status wording per project kind. Coursework is never "production". */
+export const KIND_LABEL: Record<Project['kind'], string> = {
+  live: 'Live deployment',
+  source: 'Source available',
+  client: 'Client project',
+  coursework: 'Coursework',
 }
 
 export const projects: Project[] = [
@@ -45,6 +133,9 @@ export const projects: Project[] = [
     subtitle: 'Cross-Media Entertainment Tracker · Final Year Project',
     period: '2025 – 2026',
     stack: ['React 19', 'Flask', 'Firebase Firestore', 'Google Gemini API'],
+    tech: ['react', 'flask', 'firebase', 'gemini'],
+    kind: 'live',
+    role: 'Final year project',
     description:
       'A full-stack web app that lets users track movies, music and games in one unified dashboard, built on a clean three-tier architecture.',
     highlights: [
@@ -60,6 +151,9 @@ export const projects: Project[] = [
     subtitle: 'Diploma Final Year Project · Solo-built',
     period: '2024 – 2025',
     stack: ['PHP', 'MySQL', 'HTML/CSS', 'Figma'],
+    tech: ['php', 'mysql', 'html-css', 'figma'],
+    kind: 'source',
+    role: 'Solo-built',
     description:
       'A role-based web platform (admin, adopter, cat owner) that digitises the cat adoption, return, and reporting process end to end.',
     highlights: [
@@ -75,6 +169,9 @@ export const projects: Project[] = [
     subtitle: 'Automated Inspection & Reporting System · Client Project (iPetro)',
     period: '2025',
     stack: ['Flask', 'MySQL', 'pytest'],
+    tech: ['flask', 'mysql', 'pytest'],
+    kind: 'client',
+    role: 'Team project — led Module 3',
     description:
       'A team-built inspection-automation system for a real petrol-station client. I led Module 3 — Inspection Records & Photo Management.',
     highlights: [
@@ -88,6 +185,8 @@ export const projects: Project[] = [
     subtitle: 'Android Campus Marketplace',
     period: '2024',
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase'],
+    tech: ['kotlin', 'compose', 'firebase'],
+    kind: 'coursework',
     description:
       'A native Android campus marketplace app, one of several Android projects built to explore modern mobile development.',
     highlights: [
@@ -98,15 +197,173 @@ export const projects: Project[] = [
   },
 ]
 
-export type Experience = {
+
+/* ─────────────────────────── Engineering principles ───────────────────────
+   Every principle must cite a real sentence from a project's highlights.
+   `evidence` is that quote verbatim and `source` names the project it came
+   from, so nothing here can drift into an unsupported claim.            */
+
+export type Principle = {
+  id: string
+  title: string
+  summary: string
+  detail: string[]
+  /** Verbatim quote from the cited project's highlights. */
+  evidence: string
+  source: string
+}
+
+export const principles: Principle[] = [
+  {
+    id: 'schema-first',
+    title: 'Design the data before the screens',
+    summary: 'An entity model and a data dictionary come before any UI work.',
+    detail: [
+      'Every system I have shipped started as an ERD with a written data dictionary, normalised before a single page was built.',
+      'That work is documented rather than implicit — context and data-flow diagrams, then module specifications.',
+    ],
+    evidence:
+      'Complete system documentation — context & data-flow diagrams, ERD with data dictionary, module specs',
+    source: 'Cat Adoption & Care System',
+  },
+  {
+    id: 'test-the-edges',
+    title: 'Test the edges, not just the happy path',
+    summary: 'Each module gets valid, invalid and edge-case inputs, written down.',
+    detail: [
+      'Test cases are structured per module and cover the inputs that are supposed to fail, not only the ones that should succeed.',
+      'On the client project this extended to backend testing around record handling and photo uploads.',
+    ],
+    evidence:
+      'Validated every module with structured test cases covering valid, invalid and edge-case inputs',
+    source: 'Cat Adoption & Care System',
+  },
+  {
+    id: 'cap-ai-cost',
+    title: 'Put a ceiling on AI cost',
+    summary: 'Model access is budgeted at design time, not discovered on a bill.',
+    detail: [
+      'The assistant runs on two selectable model slots so the cheaper model handles ordinary traffic.',
+      'A daily usage cap bounds worst-case spend, which matters when the operator is a student rather than a company.',
+    ],
+    evidence:
+      'Integrated Google Gemini for an AI assistant — dual model slots with a daily usage cap for cost control',
+    source: 'OmniTrakk',
+  },
+  {
+    id: 'separate-tiers',
+    title: 'Keep the tiers separate',
+    summary: 'Client, API and storage stay independently replaceable.',
+    detail: [
+      'The frontend talks to a REST API rather than reaching into storage, so either side can change without the other.',
+      'That boundary is what let an AI assistant and a notification system be added without reworking the client.',
+    ],
+    evidence: 'React 19 frontend with a Flask REST API backed by Firebase Firestore',
+    source: 'OmniTrakk',
+  },
+  {
+    id: 'scoped-access',
+    title: 'Scope access with tokens',
+    summary: 'Oversight features get their own narrow, revocable entry point.',
+    detail: [
+      'Parental monitoring is reached through a token rather than by sharing an account password.',
+      'That keeps oversight possible without handing over full account control.',
+    ],
+    evidence:
+      'Notification system and a tokenised parental-monitoring dashboard for account oversight',
+    source: 'OmniTrakk',
+  },
+]
+
+/* ───────────────────────────── Engineering lab ────────────────────────────
+   Bento tiles. Each is verifiable: the coursework list and the award come
+   from `education`, the colophon describes this repository. Deliberately no
+   "N+ projects shipped" style counters — padded counts off a four-item
+   array are exactly the kind of soft metric this site avoids.          */
+
+export type LabTile = {
+  id: string
+  span: 'wide' | 'cell'
+  eyebrow: string
+  title: string
+  body?: string
+  items?: string[]
+  href?: string
+  linkLabel?: string
+}
+
+export const labTiles: LabTile[] = [
+  {
+    id: 'focus',
+    span: 'wide',
+    eyebrow: 'Current focus',
+    title: 'Final year project, in flight',
+    body: 'OmniTrakk is a cross-media tracker built on a three-tier architecture — a React 19 client, a Flask REST API and Firestore — with a cost-capped Gemini assistant layered on top. It is the system most of my current engineering decisions come from.',
+    href: 'https://omnitrakk.amkaz.dev',
+    linkLabel: 'Live demo',
+  },
+  {
+    id: 'coursework',
+    span: 'cell',
+    eyebrow: 'Coursework',
+    title: 'What I am studying',
+    items: [
+      'Software Project Management',
+      'Database Design',
+      'Mobile/Android Development',
+      'Web Programming',
+      'Technology Entrepreneurship',
+    ],
+  },
+  {
+    id: 'recognition',
+    span: 'cell',
+    eyebrow: 'Recognition',
+    title: "Dean's Award",
+    body: "Awarded in Semesters 1–2 of my Diploma in Computer Science at UTeM.",
+  },
+  {
+    id: 'colophon',
+    span: 'wide',
+    eyebrow: 'Colophon',
+    title: 'This site',
+    body: 'React 19 and TypeScript on Vite, styled with Tailwind, deployed by GitHub Actions to GitHub Pages behind a custom domain. The source is public — the fastest way to check the frontend half of the stack above is to read it.',
+    href: 'https://github.com/giyuuln/online-porfolio',
+    linkLabel: 'Source',
+  },
+]
+
+/* ──────────────────────────────── Timeline ────────────────────────────────
+   Work and study merged into one chronological rail. `sort` is explicit and
+   numeric because the period strings ('Expected 2027', '2024 – Present',
+   '2022 – 2025') cannot be ordered by parsing them — it is the most recent
+   year each entry is active, descending.                                  */
+
+export type TimelineEntry = {
+  kind: 'work' | 'education'
+  sort: number
   role: string
   org: string
   period: string
   points: string[]
+  /** Rendered as a small gold tag, e.g. an award. */
+  tag?: string
 }
 
-export const experience: Experience[] = [
+export const timeline: TimelineEntry[] = [
   {
+    kind: 'education',
+    sort: 2027,
+    role: 'BSc Computer Science (Software Development), Hons',
+    org: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+    period: 'Expected 2027 · Final year',
+    points: [
+      'Coursework in Software Project Management, Database Design, Mobile/Android Development, Web Programming and Technology Entrepreneurship.',
+    ],
+  },
+  {
+    kind: 'work',
+    sort: 2026,
     role: 'Shopee Affiliate Content Creator',
     org: 'Self-employed · Threads @_ammaq.k',
     period: '2024 – Present',
@@ -116,26 +373,24 @@ export const experience: Experience[] = [
     ],
   },
   {
+    kind: 'education',
+    sort: 2025,
+    role: 'Diploma in Computer Science',
+    org: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+    period: '2022 – 2025',
+    points: [
+      'Graduated after completing the Cat Adoption & Care System as a solo final year project.',
+    ],
+    tag: "Dean's Award · Sem 1–2",
+  },
+  {
+    kind: 'work',
+    sort: 2022,
     role: 'Facilitator — SULAM Community Program',
     org: 'UTeM',
     period: '2022',
     points: [
       'Taught basic algebra to secondary-school students and coordinated with a team to run the program.',
     ],
-  },
-]
-
-export const education = [
-  {
-    school: 'Universiti Teknikal Malaysia Melaka (UTeM)',
-    degree: 'Bachelor Of Computer Science (Software Development)  with Honours — Final Year',
-    period: 'Expected 2027',
-    note: 'Coursework: Software Project Management, Database Design, Mobile/Android Development, Web Programming, Technology Entrepreneurship.',
-  },
-  {
-    school: 'Universiti Teknikal Malaysia Melaka (UTeM)',
-    degree: 'Diploma in Computer Science',
-    period: '2022 – 2025',
-    note: "Dean's Award recipient (Semesters 1–2).",
   },
 ]

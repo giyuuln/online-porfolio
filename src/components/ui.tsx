@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { CSSProperties, ReactNode } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
@@ -11,13 +11,22 @@ export function Reveal({
   delay?: number
   className?: string
 }) {
+  // framer-motion animates in JS, so the reduced-motion media query in
+  // index.css cannot reach it — it has to be handled here. The element still
+  // appears, it just arrives without travel or stagger.
+  const reduced = useReducedMotion()
+
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28 }}
+      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={
+        reduced
+          ? { duration: 0.2, delay: 0 }
+          : { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }
+      }
     >
       {children}
     </motion.div>
@@ -39,6 +48,7 @@ export function BlurText({
 }) {
   const [inView, setInView] = useState(false)
   const ref = useRef<HTMLParagraphElement>(null)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     const el = ref.current
@@ -65,10 +75,12 @@ export function BlurText({
           key={i}
           style={{
             display: 'inline-block',
-            filter: inView ? 'blur(0px)' : 'blur(10px)',
+            // Reduced motion: fade only — no blur, no travel, no per-letter
+            // stagger. The text still arrives, it just doesn't move.
+            filter: reduced || inView ? 'blur(0px)' : 'blur(10px)',
             opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(-20px)',
-            transition: `all 0.5s ease-out ${i * delay}ms`,
+            transform: reduced || inView ? 'translateY(0)' : 'translateY(-20px)',
+            transition: reduced ? 'opacity 0.2s ease-out' : `all 0.5s ease-out ${i * delay}ms`,
           }}
         >
           {segment}
@@ -131,6 +143,22 @@ export const Icon = {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={p.className} aria-hidden>
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  ),
+  Chevron: (p: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={p.className} aria-hidden>
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  ),
+  Copy: (p: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={p.className} aria-hidden>
+      <rect x="9" y="9" width="12" height="12" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  ),
+  Check: (p: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={p.className} aria-hidden>
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   ),
   Moon: (p: { className?: string }) => (

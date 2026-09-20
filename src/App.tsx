@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 import Nav from './components/Nav'
+import NavPill from './components/NavPill'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
+import TechEcosystem from './components/TechEcosystem'
+import FeaturedWork from './components/FeaturedWork'
+import EngineeringLab from './components/EngineeringLab'
+import Principles from './components/Principles'
+import Timeline from './components/Timeline'
+import ContactTerminal from './components/ContactTerminal'
 import Footer from './components/Footer'
 
 function useTheme() {
@@ -26,18 +29,25 @@ function useTheme() {
 
 export default function App() {
   const { dark, toggle } = useTheme()
+  useSmoothScroll()
 
   return (
     <>
       <Nav dark={dark} toggle={toggle} />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        {/* Panel stack. Sits above the pinned hero and slides over it; each
+            section inside carries its own opaque background. */}
+        <div className="relative z-10">
+          <TechEcosystem />
+          <FeaturedWork />
+          <EngineeringLab />
+          <Principles />
+          <Timeline />
+          <ContactTerminal />
+        </div>
       </main>
+      <NavPill />
       <Footer />
     </>
   )

@@ -6,37 +6,109 @@
 
 :root {
   color-scheme: light;
-  --paper: #fafafa;
-  --sand: #f0f0f0;
-  --card: #ffffff;
-  --ink: #0a0a0a;
-  --body: #525252;
-  --muted: #737373;
-  --line: #e5e5e5;
-  --gold: #a98a4e;
+
+  /* Editorial tokens are stored as SPACE-SEPARATED RGB CHANNELS, not hex.
+     Tailwind consumes them as `rgb(var(--x) / <alpha-value>)`, which is what
+     makes opacity modifiers work. With opaque hex strings Tailwind v3 cannot
+     synthesise alpha and SILENTLY DROPS the rule — that is why border-gold/40,
+     border-gold/30, bg-gold/50 and bg-paper/90 emitted no CSS at all. */
+  --paper: 250 250 250;    /* #fafafa */
+  --sand: 240 240 240;     /* #f0f0f0 */
+  --card: 255 255 255;     /* #ffffff */
+  --ink: 10 10 10;         /* #0a0a0a */
+  --body: 82 82 82;        /* #525252 */
+  --muted: 115 115 115;    /* #737373 */
+  --line: 229 229 229;     /* #e5e5e5 */
+  --gold: 169 138 78;      /* #a98a4e */
+
+  /* Text that sits ON a gold fill. --paper inverts between themes, so the
+     pill CTAs previously needed a hardcoded `dark:text-[#0a0a0a]` escape
+     hatch; this token replaces it. */
+  --on-gold: 250 250 250;
+
+  /* ── shadcn/ui semantic layer ──────────────────────────────────────────
+     Mapped onto the editorial tokens above so vendored shadcn components
+     inherit this site's look (square, gold, paper/ink) instead of the
+     default rounded-neutral theme. These are var() references, so they
+     follow .dark automatically — no duplicate block needed.
+
+     Two deliberate choices:
+       --radius: 0   keeps every shadcn component square-cornered.
+       --subtle      is shadcn's "muted" BACKGROUND, renamed because this
+                     site already uses --muted as a TEXT colour (21 call
+                     sites). Never add a --muted entry here; `text-muted`
+                     would turn into a near-invisible pale grey site-wide.
+                     Patch pasted components: bg-muted -> bg-subtle,
+                     text-muted-foreground -> text-subtle-foreground. */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card-foreground: var(--ink);
+  --popover: var(--card);
+  --popover-foreground: var(--ink);
+  --primary: var(--gold);
+  --primary-foreground: var(--on-gold);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --subtle: var(--sand);
+  --subtle-foreground: var(--muted);
+  --accent: var(--sand);
+  --accent-foreground: var(--gold);
+  --destructive: 185 28 28;
+  --destructive-foreground: 250 250 250;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--gold);
+  --radius: 0px;
 }
+
 
 .dark {
   color-scheme: dark;
-  --paper: #0a0a0a;
-  --sand: #111111;
-  --card: #161616;
-  --ink: #fafafa;
-  --body: #a3a3a3;
-  --muted: #737373;
-  --line: #262626;
-  --gold: #eadbb6;
+  --paper: 10 10 10;       /* #0a0a0a */
+  --sand: 17 17 17;        /* #111111 */
+  --card: 22 22 22;        /* #161616 */
+  --ink: 250 250 250;      /* #fafafa */
+  --body: 163 163 163;     /* #a3a3a3 */
+  --muted: 115 115 115;    /* #737373 */
+  --line: 38 38 38;        /* #262626 */
+  --gold: 234 219 182;     /* #eadbb6 */
+  --on-gold: 10 10 10;
+  --destructive: 248 113 113;
+  --destructive-foreground: 10 10 10;
 }
 
+
 html {
+  /* Native fallback, used when Lenis is not running — which is the case
+     under prefers-reduced-motion, and before/if the JS bundle loads. */
   scroll-behavior: smooth;
+}
+
+/* Lenis adds these classes to <html> itself while it is active. Native
+   smooth scrolling has to be off then, or the browser and Lenis fight over
+   the same scroll position and anchor jumps stutter. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Target `.lenis`, not `.lenis-smooth`: only `lenis` is applied reliably on
+   init (`lenis-smooth` depends on the smoothWheel option and is not present
+   at first paint). Matching the wrong one leaves native smooth scrolling on
+   and the two fight over the scroll position. */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
   @apply antialiased;
   margin: 0;
-  background: var(--paper);
-  color: var(--body);
+  background: rgb(var(--paper));
+  color: rgb(var(--body));
   transition: background-color 0.3s ease, color 0.3s ease;
   font-feature-settings: 'cv11', 'ss01';
 }
@@ -48,21 +120,76 @@ body {
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--line);
+  background: rgb(var(--line));
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+  background: rgb(var(--gold));
 }
 
 @layer components {
+  /* These mirror EXACTLY what every section renders today, so <Section>
+     is a faithful extraction rather than a restyle. They were previously
+     defined with different values (max-w-5xl / py-20 / text-3xl) and had
+     zero call sites — corrected here to the real ones. */
   .section-pad {
-    @apply mx-auto max-w-5xl px-6 py-20 sm:px-8 sm:py-28;
+    @apply mx-auto max-w-6xl px-6 py-24 sm:px-8;
   }
   .eyebrow {
-    @apply mb-3 inline-block font-mono text-sm font-medium tracking-wide text-gold;
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-gold;
   }
   .heading {
-    @apply font-display text-3xl font-bold uppercase tracking-tighter text-ink sm:text-4xl;
+    @apply font-display text-[clamp(2rem,4vw,3.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-ink;
+  }
+}
+
+/* Respect a reduced-motion preference for everything CSS owns: the
+   availability ping, the accordion open/close, and smooth scrolling.
+   Durations collapse to near-zero rather than to `none` so animations still
+   reach their END state — `animation: none` can strand an element at its
+   starting keyframe. framer-motion animates in JS and is handled separately
+   via useReducedMotion() in components/ui.tsx. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Seamless marquee: the track holds the list twice, so translating it by
+   exactly half its width lands on an identical frame and the loop is
+   invisible. Duration is set per-instance via --marquee-duration. */
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll var(--marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+
+/* The global reduced-motion block sets animation-duration to 0.01ms, which
+   for an infinite loop would spin frantically rather than stop. Stop it. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 }
