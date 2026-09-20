@@ -120,3 +120,23 @@ body {
     @apply font-display text-[clamp(2rem,4vw,3.5rem)] font-bold uppercase leading-[1.05] tracking-tighter text-ink;
   }
 }
+
+/* Respect a reduced-motion preference for everything CSS owns: the
+   availability ping, the accordion open/close, and smooth scrolling.
+   Durations collapse to near-zero rather than to `none` so animations still
+   reach their END state — `animation: none` can strand an element at its
+   starting keyframe. framer-motion animates in JS and is handled separately
+   via useReducedMotion() in components/ui.tsx. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

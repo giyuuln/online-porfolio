@@ -18,15 +18,6 @@ export const about = [
   "I'm looking for a software engineering or IT internship where I can apply these skills to real production work and keep levelling up alongside a strong team.",
 ]
 
-export const skills: { group: string; items: string[] }[] = [
-  { group: 'Languages', items: ['Python', 'JavaScript', 'Kotlin', 'PHP', 'SQL', 'HTML/CSS'] },
-  { group: 'Frameworks', items: ['React', 'Flask', 'Jetpack Compose'] },
-  { group: 'Databases', items: ['Firebase Firestore', 'MySQL'] },
-  { group: 'AI & APIs', items: ['Google Gemini API', 'REST API design'] },
-  { group: 'Tools', items: ['Git', 'Android Studio', 'VS Code', 'Figma'] },
-  { group: 'Practices', items: ['Agile SDLC', 'ERD & Normalization'] },
-]
-
 /* ───────────────────────────── Tech registry ─────────────────────────────
    Projects and the stack section are linked by ID, never by string matching:
    `skills` says 'React' while projects[0].stack says 'React 19', and
@@ -206,47 +197,6 @@ export const projects: Project[] = [
   },
 ]
 
-export type Experience = {
-  role: string
-  org: string
-  period: string
-  points: string[]
-}
-
-export const experience: Experience[] = [
-  {
-    role: 'Shopee Affiliate Content Creator',
-    org: 'Self-employed · Threads @_ammaq.k',
-    period: '2024 – Present',
-    points: [
-      'Built and grew a product-review presence from scratch with a documented content strategy aimed at students and budget buyers.',
-      'Tracked reach and click-through metrics weekly and iterated the content approach based on performance data.',
-    ],
-  },
-  {
-    role: 'Facilitator — SULAM Community Program',
-    org: 'UTeM',
-    period: '2022',
-    points: [
-      'Taught basic algebra to secondary-school students and coordinated with a team to run the program.',
-    ],
-  },
-]
-
-export const education = [
-  {
-    school: 'Universiti Teknikal Malaysia Melaka (UTeM)',
-    degree: 'Bachelor Of Computer Science (Software Development)  with Honours — Final Year',
-    period: 'Expected 2027',
-    note: 'Coursework: Software Project Management, Database Design, Mobile/Android Development, Web Programming, Technology Entrepreneurship.',
-  },
-  {
-    school: 'Universiti Teknikal Malaysia Melaka (UTeM)',
-    degree: 'Diploma in Computer Science',
-    period: '2022 – 2025',
-    note: "Dean's Award recipient (Semesters 1–2).",
-  },
-]
 
 /* ─────────────────────────── Engineering principles ───────────────────────
    Every principle must cite a real sentence from a project's highlights.
