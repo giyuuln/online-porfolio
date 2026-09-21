@@ -7,6 +7,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Lets CI be re-run by hand from the Actions tab. Useful when a run never
+  # fired for a commit — which happens if a branch is force-pushed before its
+  # pull request is opened, leaving the PR with no status at all.
+  workflow_dispatch:
 
 jobs:
   check:
@@ -24,3 +28,7 @@ jobs:
       - run: npm run check:anchors
       # Same command as the deploy workflow's build step (tsc -b && vite build)
       - run: npm run build
+      # Metadata has no visible failure mode in a browser — the site shipped a
+      # `summary_large_image` card with no image for weeks. Checked against the
+      # BUILT output, since that is what crawlers receive.
+      - run: npm run check:meta
