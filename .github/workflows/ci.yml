@@ -24,3 +24,7 @@ jobs:
       - run: npm run check:anchors
       # Same command as the deploy workflow's build step (tsc -b && vite build)
       - run: npm run build
+      # Metadata has no visible failure mode in a browser — the site shipped a
+      # `summary_large_image` card with no image for weeks. Checked against the
+      # BUILT output, since that is what crawlers receive.
+      - run: npm run check:meta

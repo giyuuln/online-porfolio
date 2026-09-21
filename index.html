@@ -5,22 +5,96 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Ammar Hafizin — Full-Stack & Android Developer</title>
+    <title>Ammar Hafizin — Full-Stack &amp; Android Developer Portfolio</title>
+    <!-- Leads with "portfolio" and names the projects, because this is what
+         Google falls back to for queries that don't match a passage further
+         down the page. -->
     <meta
       name="description"
-      content="Muhammad Ammar Hafizin — final-year IT student at UTeM and full-stack & Android developer building production-grade apps with React, Flask, Kotlin and AI. Seeking a software engineering internship."
+      content="Portfolio of Muhammad Ammar Hafizin — full-stack and Android developer, final-year Computer Science student at UTeM. Projects: OmniTrakk, Cat Adoption &amp; Care System, AIRS and CampusCycle, built with React, Flask, Firebase, Kotlin and the Google Gemini API."
     />
     <meta name="author" content="Muhammad Ammar Hafizin" />
     <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://amkaz.dev/" />
 
-    <!-- Open Graph / social preview -->
+    <!-- Open Graph / social preview.
+         LinkedIn, WhatsApp, Slack and Twitter never execute JavaScript, so for
+         them these tags plus og.png ARE the entire page — the body is an empty
+         #root until React mounts. og:image must be an ABSOLUTE url; a relative
+         path is silently ignored by every one of them. -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Ammar Hafizin — Full-Stack & Android Developer" />
+    <meta property="og:site_name" content="amkaz.dev" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://amkaz.dev/" />
+    <meta property="og:title" content="Ammar Hafizin — Full-Stack &amp; Android Developer" />
     <meta
       property="og:description"
-      content="Final-year IT student building production-grade web and mobile apps with React, Flask, Kotlin and AI."
+      content="Final-year Computer Science student at UTeM building production-grade web and mobile apps with React, Flask, Firebase, Kotlin and AI. Open to software engineering internships."
     />
+    <meta property="og:image" content="https://amkaz.dev/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="amkaz.dev — Ammar Hafizin, Full-Stack &amp; Android Developer. React, Flask, Firebase, Kotlin, Google Gemini API."
+    />
+
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ammar Hafizin — Full-Stack &amp; Android Developer" />
+    <meta
+      name="twitter:description"
+      content="Final-year Computer Science student at UTeM building production-grade web and mobile apps. Open to software engineering internships."
+    />
+    <meta name="twitter:image" content="https://amkaz.dev/og.png" />
+
+    <!--
+      Structured data. This is the strongest available signal that the site is
+      a PERSON'S PORTFOLIO rather than a page about one project.
+
+      Every field is drawn from src/data.ts — same rule as the rest of the
+      site: nothing here is a credential he does not hold. alumniOf is the
+      completed Diploma; the Bachelor's is still in progress, so it is not
+      claimed as a qualification.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Ammar Hafizin",
+        "alternateName": "Ammar Hafizin",
+        "url": "https://amkaz.dev/",
+        "image": "https://amkaz.dev/og.png",
+        "jobTitle": "Full-Stack & Android Developer",
+        "email": "mailto:ammarhafizin7@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bukit Mertajam",
+          "addressRegion": "Pulau Pinang",
+          "addressCountry": "MY"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Universiti Teknikal Malaysia Melaka (UTeM)"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "Flask",
+          "Python",
+          "Firebase",
+          "Kotlin",
+          "Jetpack Compose",
+          "MySQL",
+          "REST API design",
+          "Google Gemini API",
+          "Tailwind CSS"
+        ],
+        "sameAs": [
+          "https://github.com/giyuuln",
+          "https://linkedin.com/in/ammar-hafizin"
+        ]
+      }
+    </script>
 
     <!-- Apply theme before paint to avoid a flash of the wrong mode -->
     <script>
