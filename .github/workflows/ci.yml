@@ -7,6 +7,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Lets CI be re-run by hand from the Actions tab. Useful when a run never
+  # fired for a commit — which happens if a branch is force-pushed before its
+  # pull request is opened, leaving the PR with no status at all.
+  workflow_dispatch:
 
 jobs:
   check:
