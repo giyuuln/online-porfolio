@@ -27,7 +27,8 @@ export const about = [
  *   headshot   the tile set inside the hero name. Cropped ~4:3 around the face.
  *   workspace  the tall frame beside the stack layers. Portrait framing, ~4:5.
  *
- * Project screenshots live on each project as `shot` (see Project below).
+ * Project screenshots live on each project as `shot` (see Project below);
+ * only OmniTrakk has one, the rest are private.
  */
 export type Photo = { src?: string; alt: string }
 
@@ -135,8 +136,12 @@ export type Project = {
    * undefined rather than guessed.
    */
   role?: string
-  /** Screenshot path, e.g. 'photos/omnitrakk.webp'. Unset → placeholder frame. */
-  shot?: string
+  /**
+   * Screenshot slot. Omit it and the card has no image at all — used for the
+   * projects whose source and screens are private. `{}` reserves the slot with
+   * a placeholder frame; add `src` (e.g. 'photos/omnitrakk.webp') to fill it.
+   */
+  shot?: { src?: string }
 }
 
 /** Honest status wording per project kind. Coursework is never "production". */
@@ -165,6 +170,7 @@ export const projects: Project[] = [
     ],
     featured: true,
     demo: 'https://omnitrakk.amkaz.dev',
+    shot: {},
   },
   {
     title: 'Cat Adoption & Care System',

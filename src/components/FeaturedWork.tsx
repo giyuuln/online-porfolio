@@ -6,9 +6,9 @@ import { Icon, Reveal } from './ui'
 /**
  * The visual half of each split card.
  *
- * A screenshot sits on top of the project's actual metadata, rendered as a
- * spec plate. The screenshot is a placeholder frame until `shot` is set in
- * data.ts. Every spec row comes from a real field; rows with no data are
+ * The project's actual metadata, rendered as a spec plate, headed by a
+ * screenshot where the project has one (`shot` in data.ts — only public
+ * projects; the rest are private and get no image rather than a mockup). Every spec row comes from a real field; rows with no data are
  * omitted rather than filled with a guess.
  */
 function SpecPlate({ p }: { p: Project }) {
@@ -20,13 +20,15 @@ function SpecPlate({ p }: { p: Project }) {
 
   return (
     <div className="border border-line bg-card">
-      <div className="aspect-[16/10] border-b border-line">
-        <Photo
-          photo={{ src: p.shot, alt: `${p.title} screenshot` }}
-          label="Screenshot"
-          className="border-0"
-        />
-      </div>
+      {p.shot && (
+        <div className="aspect-[16/10] border-b border-line">
+          <Photo
+            photo={{ src: p.shot.src, alt: `${p.title} screenshot` }}
+            label="Screenshot"
+            className="border-0"
+          />
+        </div>
+      )}
       <div className="border-b border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
         Spec
       </div>
