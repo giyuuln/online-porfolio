@@ -1,14 +1,15 @@
 import { KIND_LABEL, projects, type Project } from '../data'
+import Photo from './Photo'
 import Section from './Section'
 import { Icon, Reveal } from './ui'
 
 /**
  * The visual half of each split card.
  *
- * There are no screenshots anywhere in the repo, so rather than fake a
- * browser mockup this renders the project's actual metadata as a spec plate.
- * Every row comes from a real field; rows with no data are omitted rather
- * than filled with a guess.
+ * A screenshot sits on top of the project's actual metadata, rendered as a
+ * spec plate. The screenshot is a placeholder frame until `shot` is set in
+ * data.ts. Every spec row comes from a real field; rows with no data are
+ * omitted rather than filled with a guess.
  */
 function SpecPlate({ p }: { p: Project }) {
   const rows: { k: string; v: string }[] = [
@@ -19,6 +20,13 @@ function SpecPlate({ p }: { p: Project }) {
 
   return (
     <div className="border border-line bg-card">
+      <div className="aspect-[16/10] border-b border-line">
+        <Photo
+          photo={{ src: p.shot, alt: `${p.title} screenshot` }}
+          label="Screenshot"
+          className="border-0"
+        />
+      </div>
       <div className="border-b border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
         Spec
       </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { about, layers, projects, tech, type TechId } from '../data'
+import { about, layers, photos, projects, tech, type TechId } from '../data'
+import Photo from './Photo'
 import Section from './Section'
 import TechMarquee from './TechMarquee'
 import { Reveal } from './ui'
@@ -22,8 +23,14 @@ export default function TechEcosystem() {
   return (
     <Section id="stack" index="01" label="Stack" title="How I build" accent="build" tone="paper">
       <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-        {/* Intro prose */}
+        {/* Workspace photo over the intro prose — the photo half of a
+            photo-beside-list split, with the stack layers as the list. */}
         <div className="space-y-6 md:col-span-4">
+          <Reveal>
+            <div className="mb-10 aspect-[4/5] w-full">
+              <Photo photo={photos.workspace} label="Workspace" />
+            </div>
+          </Reveal>
           {about.map((p, i) => (
             <Reveal key={i} delay={i * 0.1}>
               <p className="leading-[1.7] text-body">{p}</p>
@@ -36,10 +43,17 @@ export default function TechEcosystem() {
           {layers.map((layer, i) => {
             const items = tech.filter((t) => t.layer === layer.id)
             if (items.length === 0) return null
+            // While a chip is hovered, the other layers recede, so the list
+            // reads like a highlighted index: one row in focus, the rest grey.
+            const dimmed = active !== null && !items.some((t) => t.id === active)
 
             return (
               <Reveal key={layer.id} delay={i * 0.06}>
-                <div className="grid gap-4 border-t border-line py-6 sm:grid-cols-4">
+                <div
+                  className={`grid gap-4 border-t border-line py-6 transition-opacity duration-300 sm:grid-cols-4 ${
+                    dimmed ? 'opacity-35' : ''
+                  }`}
+                >
                   <div className="sm:col-span-1">
                     <div className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand">
                       {layer.label}

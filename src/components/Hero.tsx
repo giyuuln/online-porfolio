@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { profile } from '../data'
+import { photos, profile } from '../data'
+import Photo from './Photo'
 import { BlurText, Icon } from './ui'
 
 export default function Hero() {
@@ -62,24 +63,36 @@ function HeroContent() {
 
       {/* Centered giant name */}
       <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 px-4">
-        <div className="relative text-center">
-          <div>
+        {/* Staggered wordmark: AMMAR hangs left, HAFIZIN steps right with the
+            headshot set into the line, like a letter. The font size lives on
+            this wrapper so the tile can be sized in em and track the type at
+            every breakpoint. Below sm there is no room beside HAFIZIN, so the
+            tile drops out and both lines centre. */}
+        <div className="flex justify-center">
+          <div className="inline-flex flex-col items-center font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter sm:items-stretch sm:text-[13vw] lg:text-[200px]">
             <BlurText
               text="AMMAR"
               delay={100}
               animateBy="letters"
-              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-ink sm:text-[17vw] lg:text-[220px]"
+              className="whitespace-nowrap text-ink sm:self-start"
             />
+            <div className="flex items-end gap-[0.08em] sm:self-end">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-[0.05em] hidden h-[0.7em] w-[0.93em] shrink-0 sm:block"
+              >
+                <Photo photo={photos.headshot} label="Headshot" eager />
+              </motion.div>
+              <BlurText
+                text="HAFIZIN"
+                delay={100}
+                animateBy="letters"
+                className="whitespace-nowrap text-brand"
+              />
+            </div>
           </div>
-          <div>
-            <BlurText
-              text="HAFIZIN"
-              delay={100}
-              animateBy="letters"
-              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-brand sm:text-[17vw] lg:text-[220px]"
-            />
-          </div>
-
         </div>
 
         {/* Tagline */}

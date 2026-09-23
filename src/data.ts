@@ -18,6 +18,24 @@ export const about = [
   "I'm looking for a software engineering or IT internship where I can apply these skills to real production work and keep levelling up alongside a strong team.",
 ]
 
+/**
+ * Photography. Each slot renders a labelled placeholder frame until `src` is
+ * set, so the layout can ship before the photos exist. Drop files in
+ * public/photos/ and point `src` at them (e.g. 'photos/headshot.webp') —
+ * relative, no leading slash, same as resumeUrl.
+ *
+ *   headshot   the tile set inside the hero name. Cropped ~4:3 around the face.
+ *   workspace  the tall frame beside the stack layers. Portrait framing, ~4:5.
+ *
+ * Project screenshots live on each project as `shot` (see Project below).
+ */
+export type Photo = { src?: string; alt: string }
+
+export const photos: Record<'headshot' | 'workspace', Photo> = {
+  headshot: { alt: 'Portrait of Muhammad Ammar Hafizin' },
+  workspace: { alt: 'Ammar Hafizin at a desk, writing code' },
+}
+
 /* ───────────────────────────── Tech registry ─────────────────────────────
    Projects and the stack section are linked by ID, never by string matching:
    `skills` says 'React' while projects[0].stack says 'React 19', and
@@ -117,6 +135,8 @@ export type Project = {
    * undefined rather than guessed.
    */
   role?: string
+  /** Screenshot path, e.g. 'photos/omnitrakk.webp'. Unset → placeholder frame. */
+  shot?: string
 }
 
 /** Honest status wording per project kind. Coursework is never "production". */
