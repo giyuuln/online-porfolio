@@ -41,7 +41,7 @@ export default function TechEcosystem() {
               <Reveal key={layer.id} delay={i * 0.06}>
                 <div className="grid gap-4 border-t border-line py-6 sm:grid-cols-4">
                   <div className="sm:col-span-1">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.15em] text-gold">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand">
                       {layer.label}
                     </div>
                     <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
@@ -63,13 +63,13 @@ export default function TechEcosystem() {
                           aria-pressed={on}
                           className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] transition-colors ${
                             on
-                              ? 'border-gold text-gold'
-                              : 'border-line text-body hover:border-gold hover:text-gold'
+                              ? 'border-brand text-brand'
+                              : 'border-line text-body hover:border-brand hover:text-brand'
                           }`}
                         >
                           {t.daily && (
                             <span
-                              className="inline-block h-1 w-1 shrink-0 bg-gold"
+                              className="inline-block h-1 w-1 shrink-0 bg-brand"
                               aria-hidden
                             />
                           )}
@@ -88,7 +88,7 @@ export default function TechEcosystem() {
           <Reveal delay={0.1}>
             <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-6 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
               <span className="inline-flex items-center gap-2">
-                <span className="inline-block h-1 w-1 bg-gold" aria-hidden />
+                <span className="inline-block h-1 w-1 bg-brand" aria-hidden />
                 Current daily driver
               </span>
               <span>* Proven in this site&rsquo;s source</span>
@@ -107,7 +107,7 @@ export default function TechEcosystem() {
       {/* Tech → project linkage */}
       <Reveal delay={0.15}>
         <div className="mt-16 border-t border-line pt-8">
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
             {active ? 'Used in' : 'Built with these'}
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -118,7 +118,7 @@ export default function TechEcosystem() {
                   key={p.title}
                   className={`border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.08em] transition-all ${
                     on
-                      ? 'border-gold/40 text-ink'
+                      ? 'border-brand/40 text-ink'
                       : 'border-line text-muted opacity-30'
                   }`}
                 >

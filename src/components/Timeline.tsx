@@ -27,13 +27,13 @@ export default function Timeline() {
                   {/* Marker sits on the rail: filled for work, hollow for study. */}
                   <span
                     className={`absolute -left-[4.5px] top-1.5 h-2 w-2 ${
-                      e.kind === 'work' ? 'bg-gold' : 'border border-gold bg-paper'
+                      e.kind === 'work' ? 'bg-brand' : 'border border-brand bg-paper'
                     }`}
                     aria-hidden
                   />
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
                       {e.period}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted">
@@ -41,13 +41,13 @@ export default function Timeline() {
                     </span>
                   </div>
 
-                  <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-tight text-ink">
+                  <h3 className="mt-3 font-display text-lg font-bold uppercase tracking-normal text-ink">
                     {e.role}
                   </h3>
                   <p className="mt-1 text-sm text-muted">{e.org}</p>
 
                   {e.tag && (
-                    <span className="mt-3 inline-block border border-gold/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-gold">
+                    <span className="mt-3 inline-block border border-brand/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-brand">
                       {e.tag}
                     </span>
                   )}
@@ -56,7 +56,7 @@ export default function Timeline() {
                     {e.points.map((p) => (
                       <li key={p} className="flex gap-3 text-sm leading-relaxed text-body">
                         <span
-                          className="mt-2 inline-block h-1 w-1 shrink-0 bg-gold/50"
+                          className="mt-2 inline-block h-1 w-1 shrink-0 bg-brand/50"
                           aria-hidden
                         />
                         <span>{p}</span>

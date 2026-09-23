@@ -51,12 +51,12 @@ export default function ContactTerminal() {
         <div className="md:col-span-8 md:col-start-5">
           <Reveal>
             {/* Availability */}
-            <div className="inline-flex items-center gap-3 border border-gold/40 px-4 py-2">
+            <div className="inline-flex items-center gap-3 border border-brand/40 px-4 py-2">
               <span className="relative inline-flex h-2 w-2" aria-hidden>
-                <span className="absolute inline-flex h-full w-full animate-ping bg-gold opacity-60" />
-                <span className="relative inline-flex h-2 w-2 bg-gold" />
+                <span className="absolute inline-flex h-full w-full animate-ping bg-brand opacity-60" />
+                <span className="relative inline-flex h-2 w-2 bg-brand" />
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-gold">
+              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-brand">
                 Open to software engineering / IT internships
               </span>
             </div>
@@ -66,7 +66,7 @@ export default function ContactTerminal() {
           <Reveal delay={0.1}>
             <div className="mt-8 border border-line bg-card">
               <div className="flex items-center gap-3 border-b border-line px-5 py-3">
-                <span className="inline-block h-1.5 w-1.5 bg-gold" aria-hidden />
+                <span className="inline-block h-1.5 w-1.5 bg-brand" aria-hidden />
                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
                   amkaz@portfolio:~$ contact --email
                 </span>
@@ -77,7 +77,7 @@ export default function ContactTerminal() {
                 <button
                   type="button"
                   onClick={copy}
-                  className="inline-flex items-center gap-2 border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:border-gold hover:text-gold"
+                  className="inline-flex items-center gap-2 border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.15em] text-muted transition-colors hover:border-brand hover:text-brand"
                 >
                   {copied ? <Icon.Check className="h-3.5 w-3.5" /> : <Icon.Copy className="h-3.5 w-3.5" />}
                   {copied ? 'Copied' : 'Copy'}
@@ -91,7 +91,7 @@ export default function ContactTerminal() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-3 rounded-full bg-gold px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-on-gold transition-opacity hover:opacity-90"
+                className="inline-flex items-center gap-3 rounded-full bg-brand px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-on-brand transition-opacity hover:opacity-90"
               >
                 <Icon.Mail className="h-4 w-4" />
                 Email me
@@ -101,7 +101,7 @@ export default function ContactTerminal() {
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-3 border border-line px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-body transition-colors hover:border-gold hover:text-gold"
+                className="inline-flex items-center gap-3 border border-line px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-body transition-colors hover:border-brand hover:text-brand"
               >
                 <Icon.Download className="h-4 w-4" />
                 Résumé
@@ -113,7 +113,7 @@ export default function ContactTerminal() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
-                  className="text-muted transition-colors hover:text-gold"
+                  className="text-muted transition-colors hover:text-brand"
                 >
                   <Icon.GitHub className="h-5 w-5" />
                 </a>
@@ -122,7 +122,7 @@ export default function ContactTerminal() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
-                  className="text-muted transition-colors hover:text-gold"
+                  className="text-muted transition-colors hover:text-brand"
                 >
                   <Icon.LinkedIn className="h-5 w-5" />
                 </a>

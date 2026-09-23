@@ -2,8 +2,8 @@
 // LinkedIn, WhatsApp, Slack, Twitter and Google.
 //
 // There are no photographs in this repo, so the card is built from the site's
-// own editorial system instead: the dark paper ground, the gold origami crane
-// from the favicon, and Fira Code type. Regenerate after changing the wording:
+// own editorial system instead: the dark paper ground, the vermilion origami crane
+// from the favicon, and Space Grotesk type. Regenerate after changing the wording:
 //
 //   node scripts/make-og.mjs
 //
@@ -29,11 +29,11 @@ const H = 630
 const EXECUTABLE = process.env.PW_CHROME
 
 // Dark-theme token values, mirrored from src/index.css (.dark block).
-const PAPER = '#0a0a0a'
-const INK = '#fafafa'
-const GOLD = '#eadbb6'
-const MUTED = '#8c8c8c'
-const LINE = '#262626'
+const PAPER = '#0f0e0c'
+const INK = '#f4f1ea'
+const BRAND = '#ff5a1f'
+const MUTED = '#8c857a'
+const LINE = '#2a2622'
 
 // Reuse the crane straight from the favicon so the two marks never diverge.
 const crane = readFileSync('public/favicon.svg', 'utf8')
@@ -44,7 +44,7 @@ const html = `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -59,16 +59,17 @@ const html = `<!doctype html>
   .rule { height: 1px; background: ${LINE}; }
   .top { display: flex; align-items: center; justify-content: space-between; }
   .brand {
-    font-family: 'Fira Code', monospace; font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
     font-size: 26px; color: ${INK}; letter-spacing: -0.02em;
   }
-  .brand span { color: ${GOLD}; }
+  .brand span { color: ${BRAND}; }
   .crane { width: 76px; height: 76px; }
   .name {
-    font-family: 'Fira Code', monospace; font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
     font-size: 92px; line-height: 0.9; letter-spacing: -0.045em;
-    text-transform: uppercase; color: ${GOLD};
+    text-transform: uppercase; color: ${INK};
   }
+  .name span { color: ${BRAND}; }
   .role {
     font-family: 'JetBrains Mono', monospace; font-weight: 500;
     font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase;
@@ -83,8 +84,8 @@ const html = `<!doctype html>
     font-family: 'JetBrains Mono', monospace; font-size: 17px;
     letter-spacing: 0.14em; text-transform: uppercase; color: ${MUTED};
   }
-  .avail { display: flex; align-items: center; gap: 12px; color: ${GOLD}; }
-  .dot { width: 8px; height: 8px; background: ${GOLD}; }
+  .avail { display: flex; align-items: center; gap: 12px; color: ${BRAND}; }
+  .dot { width: 8px; height: 8px; background: ${BRAND}; }
 </style>
 </head>
 <body>
@@ -97,7 +98,7 @@ const html = `<!doctype html>
   </div>
 
   <div>
-    <div class="name">Ammar<br>Hafizin</div>
+    <div class="name">Ammar<br><span>Hafizin</span></div>
     <div class="role">Full-Stack &amp; Android Developer</div>
     <div class="tagline">React &middot; Flask &middot; Firebase &middot; Kotlin &middot; Google Gemini API</div>
   </div>

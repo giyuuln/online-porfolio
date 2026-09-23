@@ -4,7 +4,7 @@ import tailwindcssAnimate from 'tailwindcss-animate'
  * Tokens are stored in src/index.css as space-separated RGB channels, so every
  * colour is declared as `rgb(var(--x) / <alpha-value>)`. The `<alpha-value>`
  * placeholder is what lets Tailwind synthesise opacity modifiers — with plain
- * `var(--x)` hex strings, classes like `border-gold/40` silently emit NO CSS.
+ * `var(--x)` hex strings, classes like `border-brand/40` silently emit NO CSS.
  */
 const t = (v) => `rgb(var(${v}) / <alpha-value>)`
 
@@ -17,7 +17,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        display: ['"Fira Code"', 'ui-monospace', 'monospace'],
+        display: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         // ── Editorial tokens (canonical) ──────────────────────────────────
@@ -26,8 +26,8 @@ export default {
         ink: t('--ink'),
         body: t('--body'),
         line: t('--line'),
-        gold: t('--gold'),
-        'on-gold': t('--on-gold'),
+        brand: t('--brand'),
+        'on-brand': t('--on-brand'),
 
         // `muted` stays a SCALAR text colour. The site uses `text-muted` for
         // secondary copy in 21 places; turning it into an object would change

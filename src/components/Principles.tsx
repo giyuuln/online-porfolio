@@ -37,7 +37,7 @@ export default function Principles() {
         <div className="border border-line bg-card">
           {/* Terminal chrome */}
           <div className="flex items-center gap-3 border-b border-line px-5 py-3">
-            <span className="inline-block h-1.5 w-1.5 bg-gold" aria-hidden />
+            <span className="inline-block h-1.5 w-1.5 bg-brand" aria-hidden />
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
               amkaz@portfolio:~$ cat principles.md
             </span>
@@ -60,11 +60,11 @@ export default function Principles() {
                 >
                   <AccordionTrigger>
                     <span className="flex items-baseline gap-4">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span>
-                        <span className="block font-display text-lg font-bold uppercase tracking-tight text-ink">
+                        <span className="block font-display text-lg font-bold uppercase tracking-normal text-ink">
                           {p.title}
                         </span>
                         <span className="mt-1 block text-sm text-muted">{p.summary}</span>
@@ -81,7 +81,7 @@ export default function Principles() {
                       ))}
                     </div>
 
-                    <figure className="mt-6 border-l-2 border-gold pl-4">
+                    <figure className="mt-6 border-l-2 border-brand pl-4">
                       <blockquote className="text-sm italic leading-relaxed text-body">
                         &ldquo;{p.evidence}&rdquo;
                       </blockquote>

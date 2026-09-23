@@ -85,7 +85,7 @@ export default function Nav({
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block px-2 py-1.5 font-display text-lg font-bold uppercase tracking-tight text-ink transition-colors hover:text-gold md:text-xl"
+                  className="block px-2 py-1.5 font-display text-lg font-bold uppercase tracking-normal text-ink transition-colors hover:text-brand md:text-xl"
                 >
                   {l.label}
                 </a>
@@ -100,7 +100,7 @@ export default function Nav({
           className="font-display text-2xl font-bold tracking-tight text-ink"
           aria-label="Back to top"
         >
-          amkaz<span className="text-gold">.</span>
+          amkaz<span className="text-brand">.</span>
         </a>
 
         {/* Theme toggle — pill switch */}

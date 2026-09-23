@@ -25,7 +25,7 @@ export default function Accent({
   return (
     <>
       {text.slice(0, at)}
-      <span className="text-gold">{accent}</span>
+      <span className="text-brand">{accent}</span>
       {text.slice(at + accent.length)}
     </>
   )

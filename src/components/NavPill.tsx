@@ -7,7 +7,7 @@ import { useActiveSection } from '../hooks/useActiveSection'
  * Seven sections will not fit as labels in a mobile pill — at 375px there
  * are ~343px of usable width and "Principles" alone is ~70px. So each
  * section is a dot, and only the active one expands to show its label. The
- * gold indicator slides between them via a shared `layoutId`.
+ * accent indicator slides between them via a shared `layoutId`.
  *
  * This is a position indicator plus quick jump; Nav.tsx keeps the full
  * labelled list in its menu.
@@ -49,7 +49,7 @@ export default function NavPill() {
                 {isActive && (
                   <motion.span
                     layoutId="navpill-active"
-                    className="absolute inset-y-1.5 inset-x-0 rounded-full bg-gold/15 ring-1 ring-gold/40"
+                    className="absolute inset-y-1.5 inset-x-0 rounded-full bg-brand/15 ring-1 ring-brand/40"
                     transition={
                       reduced
                         ? { duration: 0 }
@@ -61,7 +61,7 @@ export default function NavPill() {
                 <span className="relative flex items-center gap-2">
                   <span
                     className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full transition-colors ${
-                      isActive ? 'bg-gold' : 'bg-muted'
+                      isActive ? 'bg-brand' : 'bg-muted'
                     }`}
                     aria-hidden
                   />
@@ -69,7 +69,7 @@ export default function NavPill() {
                       present for screen readers so the dots are never
                       unlabelled controls. */}
                   <span
-                    className={`font-mono text-[10px] uppercase tracking-[0.12em] text-gold ${
+                    className={`font-mono text-[10px] uppercase tracking-[0.12em] text-brand ${
                       isActive ? 'not-sr-only' : 'sr-only'
                     }`}
                   >

@@ -68,7 +68,7 @@ function HeroContent() {
               text="AMMAR"
               delay={100}
               animateBy="letters"
-              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-gold sm:text-[17vw] lg:text-[190px]"
+              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-ink sm:text-[17vw] lg:text-[220px]"
             />
           </div>
           <div>
@@ -76,7 +76,7 @@ function HeroContent() {
               text="HAFIZIN"
               delay={100}
               animateBy="letters"
-              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-gold sm:text-[17vw] lg:text-[190px]"
+              className="justify-center whitespace-nowrap font-display text-[19vw] font-bold uppercase leading-[0.8] tracking-tighter text-brand sm:text-[17vw] lg:text-[220px]"
             />
           </div>
 
@@ -101,7 +101,7 @@ function HeroContent() {
         >
           <a
             href="#work"
-            className="group inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-on-gold transition-all hover:opacity-90"
+            className="group inline-flex items-center gap-3 rounded-full bg-brand px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-on-brand transition-all hover:opacity-90"
           >
             View my work
             <Icon.Arrow className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -110,15 +110,15 @@ function HeroContent() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink transition-all hover:border-gold hover:text-gold"
+            className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-ink transition-all hover:border-brand hover:text-brand"
           >
             <Icon.Download className="h-3.5 w-3.5" />
             Resume
           </a>
-          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted transition-colors hover:text-gold">
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-muted transition-colors hover:text-brand">
             <Icon.GitHub className="h-5 w-5" />
           </a>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-muted transition-colors hover:text-gold">
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-muted transition-colors hover:text-brand">
             <Icon.LinkedIn className="h-5 w-5" />
           </a>
         </motion.div>
@@ -131,7 +131,7 @@ function HeroContent() {
         transition={{ duration: 0.8, delay: 1.8 }}
         className="absolute bottom-16 left-1/2 flex w-full -translate-x-1/2 items-center justify-center gap-3 px-6 font-mono text-[11px] uppercase tracking-[0.15em] text-muted"
       >
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold" />
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
         Available for internship · 2026
         <span className="hidden items-center gap-2 sm:flex">
           · <Icon.Pin className="h-3.5 w-3.5" /> {profile.location}

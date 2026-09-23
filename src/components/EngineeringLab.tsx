@@ -12,13 +12,13 @@ import { Icon, Reveal } from './ui'
 function Tile({ t }: { t: LabTile }) {
   return (
     <div
-      className={`flex h-full flex-col border border-line bg-card p-8 transition-colors hover:border-gold/40 ${
+      className={`flex h-full flex-col border border-line bg-card p-8 transition-colors hover:border-brand/40 ${
         t.span === 'wide' ? 'md:col-span-2' : ''
       }`}
     >
-      <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">{t.eyebrow}</div>
+      <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand">{t.eyebrow}</div>
 
-      <h3 className="mt-4 font-display text-xl font-bold uppercase tracking-tight text-ink">
+      <h3 className="mt-4 font-display text-xl font-bold uppercase tracking-normal text-ink">
         {t.title}
       </h3>
 
@@ -28,7 +28,7 @@ function Tile({ t }: { t: LabTile }) {
         <ul className="mt-5 space-y-2.5">
           {t.items.map((item) => (
             <li key={item} className="flex gap-3 text-sm leading-relaxed text-body">
-              <span className="mt-2 inline-block h-1 w-1 shrink-0 bg-gold" aria-hidden />
+              <span className="mt-2 inline-block h-1 w-1 shrink-0 bg-brand" aria-hidden />
               <span>{item}</span>
             </li>
           ))}
@@ -40,7 +40,7 @@ function Tile({ t }: { t: LabTile }) {
           href={t.href}
           target="_blank"
           rel="noreferrer"
-          className="mt-auto inline-flex items-center gap-2 pt-8 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-gold"
+          className="mt-auto inline-flex items-center gap-2 pt-8 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-brand"
         >
           <Icon.External className="h-4 w-4" />
           {t.linkLabel ?? 'Open'}

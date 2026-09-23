@@ -37,13 +37,13 @@ const AccordionTrigger = forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        'group flex flex-1 items-center justify-between gap-4 py-5 text-left transition-colors hover:text-gold [&[data-state=open]>svg]:rotate-180',
+        'group flex flex-1 items-center justify-between gap-4 py-5 text-left transition-colors hover:text-brand [&[data-state=open]>svg]:rotate-180',
         className,
       )}
       {...props}
     >
       {children}
-      <Icon.Chevron className="h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-hover:text-gold" />
+      <Icon.Chevron className="h-4 w-4 shrink-0 text-muted transition-transform duration-200 group-hover:text-brand" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

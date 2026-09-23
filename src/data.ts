@@ -346,7 +346,7 @@ export type TimelineEntry = {
   org: string
   period: string
   points: string[]
-  /** Rendered as a small gold tag, e.g. an award. */
+  /** Rendered as a small accent-coloured tag, e.g. an award. */
   tag?: string
 }
 

@@ -25,7 +25,7 @@ export default function Section({
   /** Eyebrow text after the number, e.g. "Stack". */
   label: string
   title: string
-  /** Word or phrase within `title` to set in the gold accent colour. */
+  /** Word or phrase within `title` to set in the accent colour. */
   accent?: string
   tone?: 'paper' | 'sand'
   /** Optional content rendered under the heading, inside the header grid. */

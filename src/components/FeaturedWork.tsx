@@ -19,7 +19,7 @@ function SpecPlate({ p }: { p: Project }) {
 
   return (
     <div className="border border-line bg-card">
-      <div className="border-b border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-gold">
+      <div className="border-b border-line px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-brand">
         Spec
       </div>
 
@@ -71,7 +71,7 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
             <span className="h-px flex-1 bg-line" aria-hidden />
             <span
               className={`font-mono text-[10px] uppercase tracking-[0.15em] ${
-                p.kind === 'live' ? 'text-gold' : 'text-muted'
+                p.kind === 'live' ? 'text-brand' : 'text-muted'
               }`}
             >
               {KIND_LABEL[p.kind]}
@@ -81,7 +81,7 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
           <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-ink sm:text-3xl">
             {p.title}
           </h3>
-          <p className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-gold">
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-brand">
             {p.subtitle}
           </p>
 
@@ -90,7 +90,7 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
           <ul className="mt-6 space-y-3">
             {p.highlights.map((h) => (
               <li key={h} className="flex gap-3 text-sm leading-relaxed text-body">
-                <span className="mt-2 inline-block h-1 w-1 shrink-0 bg-gold" aria-hidden />
+                <span className="mt-2 inline-block h-1 w-1 shrink-0 bg-brand" aria-hidden />
                 <span>{h}</span>
               </li>
             ))}
@@ -102,7 +102,7 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
                 href={p.demo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-gold"
+                className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-brand"
               >
                 <Icon.External className="h-4 w-4" />
                 Live demo
@@ -113,7 +113,7 @@ function WorkRow({ p, index }: { p: Project; index: number }) {
                 href={p.repo}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-gold"
+                className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-brand"
               >
                 <Icon.GitHub className="h-4 w-4" />
                 Source
